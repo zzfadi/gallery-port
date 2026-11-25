@@ -310,6 +310,7 @@
   }
 
   function setHashForPage(pageId) {
+    if (window.location.hash.slice(1) === pageId) return; // already there: no duplicate history entry
     history.pushState(null, '', '#' + pageId);
   }
 

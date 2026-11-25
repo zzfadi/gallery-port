@@ -40,6 +40,7 @@ Help me add a new ${design or implementation} to my Zuabi.dev gallery portfolio.
      "date": "${YYYY-MM}"
    }
    ```
+6. Add the page to the front page's archive: save a 640×400 WebP screenshot of it as `home/media/archive/${design}-${model}.webp`, then run `python3 _front-page/build.py`
 
 ## Validation Checklist
 
@@ -48,4 +49,5 @@ Help me add a new ${design or implementation} to my Zuabi.dev gallery portfolio.
 - [ ] Responsive at specified breakpoints
 - [ ] CSS variables defined in `:root`
 - [ ] Registered in config.json
+- [ ] Thumbnail added and front page rebuilt (`python3 _front-page/build.py`)
 - [ ] Does not contain any sensitive or private information
