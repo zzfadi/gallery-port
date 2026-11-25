@@ -1,127 +1,1777 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zuabi.dev</title>
-  <meta name="description" content="A gallery of landing pages, each built by a different AI model.">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fadi Zuabi</title>
+<meta name="description" content="Fadi Zuabi. Five ways to read one record, and an archive of forty pages built by different AI models.">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="favicon.svg">
+<style>
+@font-face{font-family:'Bricolage Grotesque';src:url('home/fonts/bricolage-grotesque.woff2') format('woff2');font-weight:200 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Barlow';src:url('home/fonts/barlow-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Barlow';src:url('home/fonts/barlow-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Barlow';src:url('home/fonts/barlow-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Barlow Condensed';src:url('home/fonts/barlow-condensed-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Epilogue';src:url('home/fonts/epilogue.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Newsreader';src:url('home/fonts/newsreader.woff2') format('woff2');font-weight:200 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Newsreader';src:url('home/fonts/newsreader-italic.woff2') format('woff2');font-weight:200 800;font-style:italic;font-display:swap}
+@font-face{font-family:'Figtree';src:url('home/fonts/figtree.woff2') format('woff2');font-weight:300 900;font-style:normal;font-display:swap}
 
-  <!-- Fonts loaded via CSS @import for Sora + JetBrains Mono -->
-  <link rel="stylesheet" href="gallery.css?v=4">
+:root{--ink:#F5F3EE;--dim:#B7BCCB;--amber:#F7AC08;--night:#0A0C14}
+*{box-sizing:border-box}
+html{background:var(--night)}
+body{margin:0;background:var(--night);color:var(--ink);overflow-anchor:none;font-family:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:3px solid #9CC2FF;outline-offset:3px}
+
+/* ---- the five pages: shared basics, then each page's own rules ---- */
+.page{position:relative;text-align:left}
+.page h1,.page h2,.page h3,.page p,.page ul,.page ol,.page figure,.page blockquote{margin:0}
+.page ul,.page ol{padding:0;list-style:none}
+.page img{display:block;max-width:100%}
+.page a{color:inherit;text-underline-offset:3px}
+.page a:hover{text-decoration-thickness:2px}
+/* Nine layers */
+.pg-layers h1,.pg-layers h2{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:600;line-height:1}
+/* Objects */
+
+/* In my own words */
+.pg-words sup{line-height:0;font-size:.45em;font-weight:500;color:#2338C2;padding-left:3px}
+.pg-words a{color:#2338C2;text-underline-offset:3px}
+.pg-words a:hover{color:#14161A}
+/* Who’s asking? */
+
+/* Maker and user */
+
+
+/* ---- without script: a plain list, the five pages one after another, then the archive as a grid ---- */
+#sky,#wafer,#veil,.dial,#spacer,.fog,.roll,.curl,.pool,#ingot,#cap,#fold,#mast .where{display:none}
+#probe{position:fixed;left:0;top:0;width:0;height:100vh;height:100svh;visibility:hidden;pointer-events:none}
+#mast{padding:14px clamp(16px,2.6vw,30px)}
+.who{font-weight:700;font-size:17px}
+#skip{display:flex;flex-wrap:wrap;gap:0 20px;padding:0 clamp(16px,2.6vw,30px) 14px;font-size:15px}
+#skip a{color:var(--ink);padding:8px 0;text-underline-offset:3px}
+#scene2{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;padding:32px clamp(16px,2.6vw,30px) 56px}
+.tile{display:block;color:var(--ink);text-decoration:none;font-size:13px;line-height:1.35}
+.tile img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:6px;background:#161a26}
+.tile span{display:block;margin-top:6px}
+
+/* ---- with script: the stage ---- */
+html.js #stage{position:fixed;left:0;top:0;width:100%;height:100vh;height:100svh;overflow:hidden;overflow:clip;perspective:var(--P,1800px);perspective-origin:50% 44%;
+  background:radial-gradient(120% 85% at 50% 28%,#262d42 0%,#151929 46%,#0A0C14 100%)}
+html.js #sky{display:block;position:absolute;inset:0;pointer-events:none}
+html.js #sky::after{content:"";position:absolute;left:50%;top:var(--gy,62%);width:var(--gw,1100px);height:var(--gh,360px);transform:translate(-50%,-50%);opacity:var(--go,1);
+  background:radial-gradient(closest-side,rgba(247,172,8,.22),rgba(247,172,8,.08) 52%,rgba(247,172,8,0) 100%)}
+html.js #sky::before{content:"";position:absolute;left:50%;top:50%;width:min(130vw,1900px);height:130%;transform:translate(-50%,-50%);opacity:var(--bo,0);
+  background:radial-gradient(closest-side,rgba(120,160,230,.2),rgba(120,160,230,.06) 55%,rgba(120,160,230,0) 100%)}
+html.js #stage::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;opacity:var(--bo,0);background:linear-gradient(180deg,rgba(10,12,20,.8) 0%,rgba(10,12,20,0) 15%,rgba(10,12,20,0) 76%,rgba(10,12,20,.92) 100%)}
+html.js #mast{position:absolute;left:0;top:0;z-index:4;display:flex;align-items:baseline;gap:10px;pointer-events:none}
+html.js #mast .where{display:inline;font-size:15px;color:var(--dim);opacity:var(--bo,0)}
+html.js #skip{position:absolute;left:12px;top:50px;z-index:6;flex-direction:column;flex-wrap:nowrap;gap:0;padding:8px 16px;background:#0A0C14;border:1px solid rgba(255,255,255,.35);border-radius:10px;opacity:0;pointer-events:none}
+html.js #skip:focus-within{opacity:1;pointer-events:auto}
+html.js #scene,html.js #scene2{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:50% 50%}
+html.js #scene2{display:none;padding:0}
+html.js #archive{display:none}
+html.js #veil{display:block;position:absolute;inset:0;z-index:1;background:#10131e;opacity:1;transition:opacity .9s ease;pointer-events:none}
+html.js #veil.is-out{opacity:0}
+@media (prefers-reduced-motion:reduce){html.js #veil{transition:none}}
+
+/* the wafer and the five pages that stand on it */
+html.js .card{position:absolute;left:0;top:0;width:100%;height:var(--H,100vh);transform-origin:50% 0;will-change:transform,opacity;--s:.4}
+html.js .clip{position:absolute;left:0;top:0;width:100%;height:var(--h0,60vh);overflow:hidden;overflow:clip;background:#fff;
+  box-shadow:0 0 0 calc(1px/var(--s)) rgba(255,255,255,.16),0 calc(26px/var(--s)) calc(60px/var(--s)) rgba(0,0,0,.5)}
+html.js .fog{display:block;position:absolute;inset:0;background:#0B0E18;opacity:0;pointer-events:none}
+html.js .curl{display:block;position:absolute;left:0;right:0;bottom:0;height:calc(34px/var(--s));background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.2));pointer-events:none}
+html.js .pool{display:block;position:absolute;left:4%;width:92%;top:var(--h0,60vh);height:calc(64px/var(--s));background:radial-gradient(closest-side,color-mix(in srgb,var(--p2) 62%,transparent),transparent);opacity:.55;pointer-events:none}
+html.js .roll{display:block;position:absolute;left:-1.1%;width:102.2%;top:var(--h0,60vh);height:40px;border-radius:999px;
+  background:linear-gradient(180deg,var(--p1) 0%,var(--p2) 46%,var(--p3) 100%);
+  box-shadow:0 calc(10px/var(--s)) calc(22px/var(--s)) rgba(0,0,0,.55),inset 0 calc(-2px/var(--s)) calc(3px/var(--s)) rgba(0,0,0,.25)}
+
+html.js #wafer{display:block;position:absolute;left:50%;top:0;width:var(--D,1400px);height:var(--D,1400px);margin:calc(var(--D,1400px)/-2) 0 0 calc(var(--D,1400px)/-2);will-change:transform,opacity;
+  background:
+    radial-gradient(closest-side,rgba(255,236,190,0) 0 94%,rgba(255,226,160,.45) 97.6%,rgba(255,206,110,.95) 99.3%,rgba(255,206,110,0) 100%),
+    radial-gradient(closest-side,#5b4719 0%,#3b2d10 52%,#1e1608 100%)}
+html.js #wafer i{display:block;position:absolute;border-radius:50%}
+html.js #wafer .dies{inset:7%;
+  background:
+    linear-gradient(rgba(255,214,130,.17),rgba(255,214,130,.17)) center/100% 26% no-repeat,
+    linear-gradient(rgba(255,214,130,.17),rgba(255,214,130,.17)) center/26% 100% no-repeat,
+    repeating-linear-gradient(0deg,rgba(255,228,176,.2) 0 2px,rgba(255,228,176,0) 2px var(--die,54px)),
+    repeating-linear-gradient(90deg,rgba(255,228,176,.2) 0 2px,rgba(255,228,176,0) 2px var(--die,54px));
+  -webkit-mask-image:radial-gradient(closest-side,#000 0 78%,rgba(0,0,0,0) 100%);mask-image:radial-gradient(closest-side,#000 0 78%,rgba(0,0,0,0) 100%)}
+html.js #wafer .sheen{inset:0;
+  background:conic-gradient(from 0deg,rgba(255,200,90,0) 0deg,rgba(255,224,160,.36) 22deg,rgba(255,200,90,.02) 58deg,rgba(132,178,255,.2) 120deg,rgba(255,200,90,.02) 168deg,rgba(255,224,160,.3) 206deg,rgba(255,200,90,.02) 250deg,rgba(255,142,178,.15) 306deg,rgba(255,200,90,0) 360deg);
+  animation:sheen 44s linear infinite}
+@keyframes sheen{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){html.js #wafer .sheen{animation:none}}
+
+/* the archive: forty pages wound around a column */
+html.js #ingot{display:block;position:absolute;left:50%;top:-30%;height:160%;width:var(--IW,1500px);margin-left:calc(var(--IW,1500px)/-2);will-change:transform;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 2px,rgba(255,255,255,0) 2px 7.2%),
+    linear-gradient(90deg,#04060a 0%,#131926 9%,#2b3445 24%,#4a566c 38%,#5c6a82 44%,#3c4759 56%,#1d2432 76%,#0b0e16 92%,#04060a 100%)}
+html.js .tile{position:absolute;left:50%;top:50%;width:var(--tw,400px);height:var(--th,250px);margin:calc(var(--th,250px)/-2) 0 0 calc(var(--tw,400px)/-2);overflow:hidden;border-radius:8px;background:#11141d;
+  box-shadow:0 0 0 1px rgba(255,255,255,.16),0 18px 40px rgba(0,0,0,.5);will-change:transform;visibility:hidden}
+html.js .tile img{width:100%;height:100%;aspect-ratio:auto;border-radius:0}
+html.js .tile span{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%)}
+html.js .tile i{position:absolute;inset:0;background:#0B0E18;opacity:0;pointer-events:none}
+html.js .tile.is-front{box-shadow:0 0 0 2px var(--amber),0 24px 52px rgba(0,0,0,.6)}
+html.js #cap{display:block;position:absolute;left:clamp(16px,2.6vw,30px);bottom:clamp(14px,2.8vh,26px);z-index:4;margin:0;max-width:min(60vw,270px);pointer-events:none;opacity:var(--bo,0)}
+#cap b{display:block;font-size:clamp(20px,2vw,27px);line-height:1.1;font-weight:700;letter-spacing:-.01em}
+#cap span{display:block;margin-top:4px;font-size:14px;line-height:1.35;color:var(--dim)}
+
+/* the two sideways scrollers. Mouse and trackpad: the script moves them, so vertical scrolling reaches the document. Touch: native, with snap. */
+html.js .dial{display:flex;position:absolute;inset:0;z-index:2;overflow:hidden;touch-action:pan-y;scrollbar-width:none;cursor:grab;user-select:none;-webkit-user-select:none}
+@media (pointer:coarse){html.js .dial{overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;touch-action:auto}}
+html.js .dial::-webkit-scrollbar{display:none}
+.dial .snap{flex:0 0 var(--item,600px);height:100%;scroll-snap-align:center}
+.dial .pad{flex:0 0 calc(50% - var(--item,600px)/2);height:100%}
+html.js #turner2 .snap{flex-basis:var(--item2,240px)}
+html.js #turner2 .pad{flex-basis:calc(50% - var(--item2,240px)/2)}
+html.js .dial.is-dragging{scroll-snap-type:none;cursor:grabbing}
+html.js .dial.is-settling{scroll-snap-type:none}
+html.js #turner2,html.js #stage.is-archive #turner{visibility:hidden;pointer-events:none}
+html.js #stage.is-archive #turner2{visibility:visible;pointer-events:auto}
+html.js #stage.is-moving .dial,html.js #stage.is-flipping .dial{overflow:hidden;pointer-events:none}
+
+/* the fold in the corner that flips between the two views */
+html.js #fold{display:flex;position:absolute;right:0;bottom:0;z-index:5;align-items:flex-end;gap:10px;padding:0;border:0;background:none;color:var(--ink);font:600 14px/1 'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#fold .lab{padding-bottom:16px;color:var(--dim)}
+#fold:hover .lab,#fold:focus-visible .lab{color:var(--ink)}
+#fold .ear{position:relative;width:74px;height:74px;transform-origin:100% 100%;transition:transform .28s ease}
+#fold:hover .ear,#fold:focus-visible .ear{transform:scale(1.16)}
+#fold .ear::before{content:"";position:absolute;inset:0;clip-path:polygon(100% 0,100% 100%,0 100%);background:linear-gradient(135deg,#5c6a82,#2b3445)}
+#fold .ear::after{content:"";position:absolute;inset:0;clip-path:polygon(100% 0,0 100%,0 0);background:linear-gradient(135deg,#f3efe5 0%,#d8d2c4 58%,#8f897c 100%)}
+html.js #stage.is-archive #fold .ear::before{background:linear-gradient(135deg,#f7ac08,#6b4a05)}
+html.js #stage.is-moving #fold{opacity:0;pointer-events:none}
+@media (prefers-reduced-motion:reduce){#fold .ear{transition:none}}
+
+#back{position:fixed;right:16px;bottom:16px;z-index:10;display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px 0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(10,12,20,.9);color:#F5F3EE;font:600 15px/1 'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+#back:hover{background:#0A0C14;border-color:#F5F3EE}
+#back[hidden]{display:none}
+
+/* ---- one page open: it is an ordinary page again ---- */
+html.js body.is-page{overflow-x:clip}
+html.js body.is-page #stage{position:relative;height:auto;overflow:visible;perspective:none;background:none}
+html.js body.is-page #stage::after{display:none}
+html.js body.is-page #scene{position:static;transform-style:flat}
+html.js body.is-page #sky,html.js body.is-page #wafer,html.js body.is-page #veil,html.js body.is-page .dial,html.js body.is-page #mast,html.js body.is-page #skip,html.js body.is-page #scene2,html.js body.is-page #cap,html.js body.is-page #fold,html.js body.is-page .roll,html.js body.is-page .fog,html.js body.is-page .curl,html.js body.is-page .pool,html.js body.is-page #spacer{display:none}
+html.js body.is-page .card{visibility:hidden}
+html.js body.is-page .card:not(.is-open){transform:none!important}
+html.js body.is-page .card.is-open{visibility:visible;position:relative;height:auto;margin-top:var(--S,90vh);will-change:auto}
+html.js body.is-page .card.is-open .clip{position:relative;height:auto;overflow:visible;box-shadow:none;border-radius:0;background:none}
+html.js #spacer{display:block}
+</style>
 </head>
 <body>
-  <!-- Full-viewport iframe for page content -->
-  <iframe id="page-frame" title="Landing page content" allow="pointer-lock"></iframe>
 
-  <!-- Floating trigger button -->
-  <button class="gallery-trigger" id="gallery-trigger" aria-haspopup="dialog" aria-expanded="false">
-    <span class="trigger-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="7" height="7"></rect>
-        <rect x="14" y="3" width="7" height="7"></rect>
-        <rect x="14" y="14" width="7" height="7"></rect>
-        <rect x="3" y="14" width="7" height="7"></rect>
-      </svg>
-    </span>
-    <span class="trigger-current">
-      <span class="trigger-design" id="trigger-design">Loading</span>
-      <span class="trigger-sep">·</span>
-      <span class="trigger-model" id="trigger-model">
-        <span class="trigger-model-icon" id="trigger-model-icon"></span>
-        <span class="trigger-model-name" id="trigger-model-name">...</span>
-      </span>
-    </span>
-    <span class="trigger-kbd">G</span>
-  </button>
+<div id="stage">
+<div id="sky" aria-hidden="true"></div>
 
-  <!-- Modal backdrop -->
-  <div class="gallery-backdrop" id="gallery-backdrop"></div>
+<header id="mast"><span class="who">Fadi Zuabi</span><span class="where">Archive</span></header>
 
-  <!-- Command Palette / Bottom Sheet -->
-  <div class="gallery-palette" id="gallery-palette" role="dialog" aria-modal="true" aria-labelledby="palette-title">
-    <!-- Header -->
-    <div class="palette-header">
-      <div class="palette-title">
-        <h2 id="palette-title">Zuabi.dev Gallery</h2>
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
-            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </button>
-          <button class="palette-close" id="palette-close" aria-label="Close gallery">&times;</button>
-        </div>
-      </div>
-      <p class="palette-subtitle">Same content, different AI designs</p>
-    </div>
+<nav id="skip" aria-label="Pages">
+<a href="#nine-layers">Nine layers</a>
+<a href="#objects">Objects</a>
+<a href="#in-my-own-words">In my own words</a>
+<a href="#whos-asking">Who’s asking?</a>
+<a href="#maker-and-user">Maker and user</a>
+<a href="#archive">Archive</a>
+</nav>
 
-    <!-- Design Selector (Visual Tiles) -->
-    <div class="palette-categories-wrapper">
-      <div class="palette-categories" id="palette-categories" role="tablist" aria-label="Design categories"></div>
-    </div>
+<div id="scene">
+<div id="wafer" aria-hidden="true"><i class="dies"></i><i class="sheen"></i></div>
 
-    <!-- Design Tiles (3-column grid) -->
-    <div class="palette-designs-wrapper">
-      <div class="palette-designs" id="palette-designs" role="tablist" aria-label="Design styles"></div>
-    </div>
+<section class="card" id="nine-layers" data-key="nine-layers" aria-label="Nine layers" style="--p1:#FFFFFF;--p2:#C9D3E2;--p3:#8793A8">
+<div class="pool"></div>
+<div class="clip"><div class="page pg-layers">
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #FFFFFF; color: #0E1726; font-family: Barlow, 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.5">
 
-    <!-- Model List -->
-    <div class="palette-models" id="palette-models" role="listbox" aria-label="AI model implementations"></div>
+<header style="background: #FFFFFF; padding: 20px 0 72px">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 40px">
+<nav aria-label="Contact" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px; margin-bottom: 72px">
+<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 24px">Fadi Zuabi</span>
+<div style="display: flex; flex-wrap: wrap; gap: 0 28px; font-size: 16px">
+<a href="https://x.com/fadi_zuabi" style="padding: 10px 0">X</a>
+<a href="https://www.linkedin.com/in/fadi-zuabi" style="padding: 10px 0">LinkedIn</a>
+<a href="https://github.com/zzfadi" style="padding: 10px 0">GitHub</a>
+<a href="mailto:fadi.b.zuabi@gmail.com" style="padding: 10px 0">Email</a>
+</div>
+</nav>
+<div style="display: flex; flex-wrap: wrap; gap: 48px 64px; align-items: flex-start">
+<div style="flex: 1 1 520px; min-width: 0">
+<h1 style="font-size: clamp(44px, 5.3vw, 72px); text-wrap: balance">From silicon to Super Intelligence.</h1>
+<p style="margin-top: 28px; max-width: 560px; font-size: 19px">I’m a machine learning engineer at Solidigm, leading the company’s AI agent platform. Before this I wrote firmware for seven years, first in avionics at GE Aviation, then for enterprise SSDs at Intel and Solidigm. Before that I made devices on a silicon wafer.</p>
+<p style="margin-top: 14px; max-width: 560px; font-size: 19px">This page is that stack. Nine layers, people at the top, silicon at the bottom.</p>
+</div>
+<nav aria-label="The nine layers" style="flex: 0 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<a href="#people" style="display: flex; align-items: center; gap: 14px; min-height: 44px; padding: 0 16px; background: #EDF1F7; color: #0E1726; text-decoration: none; font-size: 15px"><span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 18px; width: 22px">09</span><span style="flex: 1; font-weight: 600; font-size: 16px">People</span><span>2018, 2025–26</span></a>
+<a href="#platforms" style="display: flex; align-items: center; gap: 14px; min-height: 44px; padding: 0 16px; background: #DFE6F0; color: #0E1726; text-decoration: none; font-size: 15px"><span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 18px; width: 22px">08</span><span style="flex: 1; font-weight: 600; font-size: 16px">Platforms</span><span>2026</span></a>
+<a href="#agents" style="display: flex; align-items: center; gap: 14px; min-height: 44px; padding: 0 16px; background: #CCD6E4; color: #0E1726; text-decoration: none; font-size: 15px"><span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 18px; width: 22px">07</span><span style="flex: 1; font-weight: 600; font-size: 16px">Agents</span><span>2026</span></a>
+<a href="#models" style="display: flex; align-items: center; gap: 14px; min-height: 44px; padding: 0 16px; background: #B4C1D4; color: #0E1726; text-decoration: none; font-size: 15px"><span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 18px; width: 22px">06</span><span style="flex: 1; font-weight: 600; font-size: 16px">Models</span><span>2025–26</span></a>
+<a href="#toolchains" style="display: flex; align-items: center; gap: 14px; min-height: 44px; padding: 0 16px; background: #94A5BE; color: #0E1726; text-decoration: none; font-size: 15px"><span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 18px; width: 22px">05</span><span style="flex: 1; font-weight: 600; font-size: 16px">Toolchains</span><span>2019–21, 2025</span></a>
+<a href="#firmware" style="display: flex; align-items: center; gap: 14px; min-height: 44px; padding: 0 16px; background: #54688A; color: #FFFFFF; text-decoration: none; font-size: 15px"><span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 18px; width: 22px">04</span><span style="flex: 1; font-weight: 600; font-size: 16px">Firmware</span><span>2019–26</span></a>
+<a href="#boards" style="display: flex; align-items: center; gap: 14px; min-height: 44px; padding: 0 16px; background: #3A4C6B; color: #FFFFFF; text-decoration: none; font-size: 15px"><span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 18px; width: 22px">03</span><span style="flex: 1; font-weight: 600; font-size: 16px">Boards</span><span>2018</span></a>
+<a href="#logic" style="display: flex; align-items: center; gap: 14px; min-height: 44px; padding: 0 16px; background: #253450; color: #FFFFFF; text-decoration: none; font-size: 15px"><span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 18px; width: 22px">02</span><span style="flex: 1; font-weight: 600; font-size: 16px">Logic</span><span>2018</span></a>
+<a href="#devices" style="display: flex; align-items: center; gap: 14px; min-height: 44px; padding: 0 16px; background: #131C2E; color: #FFFFFF; text-decoration: none; font-size: 15px"><span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 18px; width: 22px">01</span><span style="flex: 1; font-weight: 600; font-size: 16px">Devices</span><span>2018</span></a>
+<p style="margin-top: 10px; font-size: 14px">The years are when I worked at each layer.</p>
+</nav>
+</div>
+</div>
+</header>
 
-    <!-- Footer -->
-    <div class="palette-footer">
-      <div class="palette-shortcuts">
-        <span class="shortcut"><kbd>↑</kbd><kbd>↓</kbd> models</span>
-        <span class="shortcut"><kbd>←</kbd><kbd>→</kbd> designs</span>
-        <span class="shortcut"><kbd>esc</kbd> close</span>
-      </div>
-      <button class="palette-prompt-btn" id="palette-prompt-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="16" y1="13" x2="8" y2="13"></line>
-          <line x1="16" y1="17" x2="8" y2="17"></line>
-        </svg>
-        View prompt
-      </button>
-    </div>
-  </div>
+<section id="people" style="background: #EDF1F7; padding: 64px 0">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: flex-start">
+<div style="flex: 0 0 220px">
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 20px; line-height: 1.2">09</p>
+<h2 style="font-size: 48px; margin-top: 2px">People</h2>
+<p style="margin-top: 12px; font-size: 15px">2018, 2025 to 2026</p>
+</div>
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<p style="font-size: 22px; line-height: 1.4; font-weight: 500">I teach engineers to work with coding agents. 120+ trained so far. Three sites now teach it without me, one in Polish.</p>
+<p style="font-size: 16px; line-height: 1.55">Hands-on workshops for firmware engineers, and a program others can teach. The first series rated it 4.8 out of 5 (27 responses). In 2026 it reached six sites.</p>
+<p style="font-size: 16px; line-height: 1.55">Before that: course assistant for FPGA and SoC projects, August to December 2018.</p>
+</div>
+<figure style="flex: 1 1 340px; min-width: 0; background: #FFFFFF; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<blockquote style="display: flex; flex-direction: column; gap: 10px; font-size: 17px; line-height: 1.5">
+<p>next time you're struggling to setup an AI meta layer tool, just copy paste this to any AI chat you use:</p>
+<p>"Setup this [Skill/ MCP/ Agent/ etc] for me &lt;link to the tool or its docs&gt;. If you need any auth or help from me, give me steps to do it so you can continue"</p>
+</blockquote>
+<figcaption style="font-size: 14px">What I posted on <a href="https://x.com/fadi_zuabi">X</a>, March 12, 2026</figcaption>
+</figure>
+</div>
+</section>
 
-  <!-- Prompt Modal -->
-  <div class="prompt-modal-overlay" id="prompt-modal-overlay">
-    <div class="prompt-modal">
-      <div class="prompt-modal-header">
-        <span class="prompt-modal-title" id="prompt-modal-title">Design Prompt</span>
-        <button class="prompt-modal-close" id="prompt-modal-close">&times;</button>
-      </div>
-      <div class="prompt-modal-content" id="prompt-modal-content">
-        <div class="prompt-loading">Loading prompt...</div>
-      </div>
-    </div>
-  </div>
+<section id="platforms" style="background: #DFE6F0; padding: 64px 0">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: flex-start">
+<div style="flex: 0 0 220px">
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 20px; line-height: 1.2">08</p>
+<h2 style="font-size: 48px; margin-top: 2px">Platforms</h2>
+<p style="margin-top: 12px; font-size: 15px">Since June 2026</p>
+</div>
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<p style="font-size: 22px; line-height: 1.4; font-weight: 500">I lead development of Solidigm’s AI agent platform and its governance. 1,400+ people use it. A five-person team built it, largely with coding agents.</p>
+<p style="font-size: 16px; line-height: 1.55">Governance covers agent identity, access and cost controls.</p>
+<p style="font-size: 16px; line-height: 1.55">Benchmarks from past firmware projects evaluate agents before release.</p>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<div>
+<p style="font-size: 14px">Agent setup, before</p>
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 34px; line-height: 1.15">Half a day of requests</p>
+</div>
+<div>
+<p style="font-size: 14px">Agent setup, now</p>
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 34px; line-height: 1.15">One pasted prompt</p>
+</div>
+<p style="font-size: 16px; line-height: 1.55">Behind it: a skills registry, a plugin marketplace, and a tools skill that connects agents to Jira, wiki and code.</p>
+</div>
+</div>
+</section>
 
-  <!-- Loading overlay -->
-  <div class="loading-overlay" id="loading-overlay">
-    <div class="loading-spinner"></div>
-  </div>
+<section id="agents" style="background: #CCD6E4; padding: 64px 0">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: flex-start">
+<div style="flex: 0 0 220px">
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 20px; line-height: 1.2">07</p>
+<h2 style="font-size: 48px; margin-top: 2px">Agents</h2>
+<p style="margin-top: 12px; font-size: 15px">2026</p>
+</div>
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<p style="font-size: 22px; line-height: 1.4; font-weight: 500">Outside work I build at hackathons: robot arms that hand something to a person, a control that sits beside a clinician, agents that test the sandboxes made for them.</p>
+<div>
+<h3 style="font-size: 16px; line-height: 1.55; font-weight: 600">Physical AI Hacks, Nov 7 to 8, 2026</h3>
+<p style="font-size: 16px; line-height: 1.55">Five of us, 31 hours from first commit to last run. By the end an arm handed a water bottle to a person on camera. I led the team and the robot stack. <a href="https://youtu.be/GK2B8TnZ3BI">Handover video</a>, <a href="https://zzfadi.github.io/geotech-robotics-hackathon/">project page</a>.</p>
+</div>
+<div>
+<h3 style="font-size: 16px; line-height: 1.55; font-weight: 600">DeskDeck, Sep 12, 2026</h3>
+<p style="font-size: 16px; line-height: 1.55">One tap stages a follow-up from what’s on screen, a person approves it, and the device confirms it was saved. Built solo at AI Tinkerers SF. <a href="https://github.com/zzfadi/deskdeck">Code</a>.</p>
+</div>
+<div>
+<h3 style="font-size: 16px; line-height: 1.55; font-weight: 600">Sandbox Inception, Mar 7, 2026</h3>
+<p style="font-size: 16px; line-height: 1.55">I used agents to test three sandbox platforms that call themselves agent-native. Every one of them needed a human to sign up in a browser before an agent could start. <a href="https://zzfadi.github.io/sandbox-inception/">Write-up</a>.</p>
+</div>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<figure style="display: flex; flex-direction: column; gap: 8px">
+<img loading="lazy" decoding="async" src="home/media/physical-ai-lift.jpg" alt="Two camera views side by side. In each, a black robot gripper holds a short cylinder just above a white table." style="width: 100%; aspect-ratio: 1040 / 390; object-fit: cover">
+<figcaption style="font-size: 14px">The right arm lifting a cylinder, from two cameras.</figcaption>
+</figure>
+<figure style="display: flex; flex-direction: column; gap: 8px">
+<img loading="lazy" decoding="async" src="home/media/sandbox-inception.webp" alt="The top of the Sandbox Inception write-up: the title, a one-line summary, and four counts." style="width: 100%; aspect-ratio: 1280 / 800; object-fit: cover">
+<figcaption style="font-size: 14px">The front page of the Sandbox Inception write-up.</figcaption>
+</figure>
+</div>
+</div>
+</section>
 
-  <!-- Keyboard hint toast -->
-  <div class="keyboard-hint" id="keyboard-hint">
-    Press <kbd>G</kbd> to browse gallery
-  </div>
+<section id="models" style="background: #B4C1D4; padding: 64px 0">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: flex-start">
+<div style="flex: 0 0 220px">
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 20px; line-height: 1.2">06</p>
+<h2 style="font-size: 48px; margin-top: 2px">Models</h2>
+<p style="margin-top: 12px; font-size: 15px">2025 to 2026</p>
+</div>
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<p style="font-size: 22px; line-height: 1.4; font-weight: 500">My first time training models: translating Akkadian cuneiform into English. Nine scored submissions took it from 9.7 to 28.6. Some of them went backwards.</p>
+<div>
+<h3 style="font-size: 16px; line-height: 1.55; font-weight: 600">Cactus × DeepMind hackathon, Feb 2026</h3>
+<p style="font-size: 16px; line-height: 1.55">Routing tool calls between a small on-device model and a cloud model. <a href="https://github.com/zzfadi/cactus-hackathon">Code</a>.</p>
+</div>
+<div>
+<h3 style="font-size: 16px; line-height: 1.55; font-weight: 600">DeepTime, Kiroween, Dec 2025</h3>
+<p style="font-size: 16px; line-height: 1.55">A web app that reads the real geology for a location, describes each layer, and generates an image or a short video of that era. <a href="https://studio-5849128303-2d9db.web.app">Live app</a>, <a href="https://github.com/zzfadi/deeptime">code</a>.</p>
+</div>
+<div>
+<h3 style="font-size: 16px; line-height: 1.55; font-weight: 600">Gemini API Tester</h3>
+<p style="font-size: 16px; line-height: 1.55">A web console for testing Gemini and Veo API keys. <a href="https://meter.zuabi.dev/">meter.zuabi.dev</a>.</p>
+</div>
+</div>
+<figure style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<div role="img" aria-label="Bar chart of nine scores in order: 9.7, 12.1, 18.5, 28.6, 24.8, 13.3, 15.8, 28.2 and about 28.6." style="display: flex; align-items: flex-end; gap: 10px; height: 170px; border-bottom: 2px solid #0E1726">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">9.7</span><div style="width: 100%; max-width: 26px; height: 45px; background: #0E1726; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 26px; height: 56px; background: #0E1726; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 26px; height: 85px; background: #0E1726; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">28.6</span><div style="width: 100%; max-width: 26px; height: 132px; background: #0E1726; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 26px; height: 114px; background: #0E1726; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">13.3</span><div style="width: 100%; max-width: 26px; height: 61px; background: #0E1726; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 26px; height: 73px; background: #0E1726; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 26px; height: 130px; background: #0E1726; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">~28.6</span><div style="width: 100%; max-width: 26px; height: 132px; background: #0E1726; border-radius: 4px 4px 0 0"></div></div>
+</div>
+<div aria-hidden="true" style="display: flex; gap: 10px; font-size: 13px; line-height: 1.2; text-align: center">
+<span style="flex: 1">1</span><span style="flex: 1">2</span><span style="flex: 1">3</span><span style="flex: 1">4</span><span style="flex: 1">5</span><span style="flex: 1">6</span><span style="flex: 1">7</span><span style="flex: 1">8</span><span style="flex: 1">9</span>
+</div>
+<figcaption style="margin-top: 6px; font-size: 14px">Kaggle Deep Past Challenge, Jan to Mar 2026. The competition’s score for each scored submission, in order. The best came at the fourth try.</figcaption>
+</figure>
+</div>
+</section>
 
-  <script src="gallery.js?v=6"></script>
+<section id="toolchains" style="background: #94A5BE; padding: 64px 0">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: flex-start">
+<div style="flex: 0 0 220px">
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 20px; line-height: 1.2">05</p>
+<h2 style="font-size: 48px; margin-top: 2px">Toolchains</h2>
+<p style="margin-top: 12px; font-size: 15px">2019 to 2021, 2025</p>
+</div>
+<div style="flex: 1 1 380px; min-width: 0; max-width: 640px; display: flex; flex-direction: column; gap: 14px">
+<p style="font-size: 22px; line-height: 1.4; font-weight: 500">I enabled open-source Clang and Xtensa compilers for one product’s firmware. Compile times dropped by more than half.</p>
+<p style="font-size: 16px; line-height: 1.55">Earlier, at GE Aviation, a colleague and I worked with LDRA engineers to deploy shared static analysis in Jenkins, reducing runtime and license needs.</p>
+</div>
+</div>
+</section>
+
+<section id="firmware" style="background: #54688A; color: #FFFFFF; padding: 64px 0">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: flex-start">
+<div style="flex: 0 0 220px">
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 20px; line-height: 1.2">04</p>
+<h2 style="font-size: 48px; margin-top: 2px">Firmware</h2>
+<p style="margin-top: 12px; font-size: 15px">2019 to 2026</p>
+</div>
+<div style="flex: 1 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<p style="max-width: 640px; font-size: 22px; line-height: 1.4; font-weight: 500">Seven years of firmware. Avionics first, at GE Aviation, then enterprise SSDs at Intel and Solidigm.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 28px 40px">
+<div>
+<h3 style="font-size: 16px; line-height: 1.55; font-weight: 600">Avionics, Aug 2019 to Jun 2021</h3>
+<p style="font-size: 16px; line-height: 1.55">I owned cellular-module development for an aircraft health monitoring unit: C on embedded Linux, under DO-178C. Bombardier calls the unit Smart Link Plus and began installing it on Challenger jets in August 2021.</p>
+<p style="margin-top: 8px; font-size: 16px; line-height: 1.55"><a href="https://bombardier.com/en/support/enhance-your-aircraft/smart-link-plus">Smart Link Plus on Bombardier’s site</a></p>
+</div>
+<div>
+<h3 style="font-size: 16px; line-height: 1.55; font-weight: 600">SSDs, Jun 2021 to Jun 2026</h3>
+<p style="font-size: 16px; line-height: 1.55">NAND and media-management firmware in C at Intel, then transport-layer firmware in C++ at Solidigm, where I led delivery across development, validation and manufacturing teams. Fixing a drive-spare bug cut one reliability run from 15 weeks to 13.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="boards" style="background: #3A4C6B; color: #FFFFFF; padding: 64px 0">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: flex-start">
+<div style="flex: 0 0 220px">
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 20px; line-height: 1.2; color: #F7AC08">03</p>
+<h2 style="font-size: 48px; margin-top: 2px">Boards</h2>
+<p style="margin-top: 12px; font-size: 15px">Fall 2018</p>
+</div>
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<p style="font-size: 22px; line-height: 1.4; font-weight: 500">Senior design, a team of three: wireless lighting control for an artwork of 270 glass tubes. My part was the control unit.</p>
+<p style="font-size: 16px; line-height: 1.55">I implemented the RS485 bus, programmed the AVR microcontroller, and used DMX512 to drive the LEDs.</p>
+<p style="font-size: 16px; line-height: 1.55">Another capture from the same night is stamped 03:30 in the morning.</p>
+</div>
+<figure style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<img loading="lazy" decoding="async" src="home/media/scope-2115.png" alt="An oscilloscope screen showing a square data signal with two vertical cursors. The readout says the cursors are 44 microseconds apart." style="width: 100%; aspect-ratio: 800 / 503; object-fit: cover">
+<figcaption style="font-size: 14px; color: #D5DDEA">Nov 7, 2018, 21:15. The cursors measure one DMX512 slot at 44 microseconds, which is what the standard specifies.</figcaption>
+</figure>
+</div>
+</section>
+
+<section id="logic" style="background: #253450; color: #FFFFFF; padding: 64px 0">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: flex-start">
+<div style="flex: 0 0 220px">
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 20px; line-height: 1.2; color: #F7AC08">02</p>
+<h2 style="font-size: 48px; margin-top: 2px">Logic</h2>
+<p style="margin-top: 12px; font-size: 15px">Spring 2018</p>
+</div>
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<p style="font-size: 22px; line-height: 1.4; font-weight: 500">With a lab partner I built Battle City on an FPGA board: two players and an AI opponent, hardware and software together.</p>
+<p style="font-size: 16px; line-height: 1.55">The board was an Altera DE2-115. The design used 10,774 LUTs and ran at 127.16 MHz.</p>
+<p style="font-size: 16px; line-height: 1.55">That fall I went back to the same lab as a course assistant.</p>
+</div>
+<figure style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<img loading="lazy" decoding="async" src="home/media/aes-waveform.webp" alt="A logic simulator window: a column of signal names on the left, and their green waveforms stepping through the rounds of a decryption on the right." style="width: 100%; aspect-ratio: 1400 / 742; object-fit: cover">
+<figcaption style="font-size: 14px; color: #D5DDEA">A lab from the same course: AES decryption in simulation, April 2018.</figcaption>
+</figure>
+</div>
+</section>
+
+<section id="devices" style="background: #131C2E; color: #FFFFFF; padding: 64px 0">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: flex-start">
+<div style="flex: 0 0 220px">
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 20px; line-height: 1.2; color: #F7AC08">01</p>
+<h2 style="font-size: 48px; margin-top: 2px">Devices</h2>
+<p style="margin-top: 12px; font-size: 15px">Fall 2018</p>
+</div>
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<p style="font-size: 22px; line-height: 1.4; font-weight: 500">In the cleanroom course I started from a plain silicon wafer, then fabricated and tested diodes, capacitors, transistors and ring oscillators on it.</p>
+<p style="font-size: 16px; line-height: 1.55">The course was IC Device Theory and Fabrication at Illinois.</p>
+<p style="font-size: 16px; line-height: 1.55">The spring before, in a nanotechnology course, four of us built an enhanced solar cell in a cleanroom.</p>
+</div>
+<figure style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<img loading="lazy" decoding="async" src="home/media/wafer.jpg" alt="A round silicon wafer in a carrier, photographed under the yellow light of a cleanroom. A cross of patterned dies runs across it." style="width: 100%; aspect-ratio: 557 / 743; object-fit: cover">
+<img loading="lazy" decoding="async" src="home/media/dies.jpg" alt="Close view of the wafer surface: rows of small test structures and devices repeated in a grid." style="width: 100%; aspect-ratio: 557 / 743; object-fit: cover">
+</div>
+<figcaption style="font-size: 14px; color: #D5DDEA">My wafer under the yellow light of the cleanroom, and the devices up close.</figcaption>
+</figure>
+</div>
+</section>
+
+<footer style="flex-grow: 1; background: #0B1120; color: #FFFFFF; padding: 56px 0 64px">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px 48px">
+<div>
+<p style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 28px; line-height: 1.1">Fadi Zuabi</p>
+<p style="margin-top: 6px; font-size: 16px; color: #D5DDEA">California</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 0 28px; font-size: 17px">
+<a href="mailto:fadi.b.zuabi@gmail.com" style="padding: 10px 0">fadi.b.zuabi@gmail.com</a>
+<a href="https://x.com/fadi_zuabi" style="padding: 10px 0">X</a>
+<a href="https://www.linkedin.com/in/fadi-zuabi" style="padding: 10px 0">LinkedIn</a>
+<a href="https://github.com/zzfadi" style="padding: 10px 0">GitHub</a>
+</div>
+</div>
+</footer>
+
+</div>
+</div><div class="fog"></div><div class="curl"></div></div>
+<div class="roll"></div>
+</section>
+
+<section class="card" id="objects" data-key="objects" aria-label="Objects" style="--p1:#3C7565;--p2:#1D4439;--p3:#0B1F1A">
+<div class="pool"></div>
+<div class="clip"><div class="page pg-objects">
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #17362E; color: #F3F6F1; font-family: Epilogue, 'Helvetica Neue', Arial, sans-serif; font-size: 16px; line-height: 1.5">
+
+<header style="padding: 20px 0 64px">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 48px">
+<nav aria-label="Contact" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px; margin-bottom: 72px">
+<span style="font-weight: 600; font-size: 18px">Fadi Zuabi</span>
+<div style="display: flex; flex-wrap: wrap; gap: 0 28px; font-size: 15px">
+<a href="https://x.com/fadi_zuabi" style="padding: 10px 0">X</a>
+<a href="https://www.linkedin.com/in/fadi-zuabi" style="padding: 10px 0">LinkedIn</a>
+<a href="https://github.com/zzfadi" style="padding: 10px 0">GitHub</a>
+<a href="mailto:fadi.b.zuabi@gmail.com" style="padding: 10px 0">Email</a>
+</div>
+</nav>
+<h1 style="font-size: clamp(52px, 7.4vw, 100px); line-height: 1; font-weight: 700; letter-spacing: -0.02em">Things I’ve made.</h1>
+<p style="margin-top: 28px; max-width: 620px; font-size: 20px; line-height: 1.5">Sixteen of them, from 2018 to 2026: a silicon wafer, a game on an FPGA, a control unit for an artwork, firmware, a platform, a course, and what I build on nights and weekends. Each label says what the thing is and what it’s made of.</p>
+</div>
+</header>
+
+<main style="padding: 0 0 96px">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 48px; display: flex; flex-wrap: wrap; gap: 56px 40px; align-items: flex-start">
+
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 56px">
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FBFBF8; padding: 12px; display: flex; flex-direction: column; gap: 12px">
+<img loading="lazy" decoding="async" src="home/media/wafer.jpg" alt="A round silicon wafer in a carrier, photographed under the yellow light of a cleanroom. A cross of patterned dies runs across it." style="width: 100%; aspect-ratio: 557 / 743; object-fit: cover">
+<img loading="lazy" decoding="async" src="home/media/dies.jpg" alt="Close view of the wafer surface: rows of small test structures and devices repeated in a grid." style="width: 100%; aspect-ratio: 3 / 2; object-fit: cover">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">The wafer</h2>
+<p>A plain silicon wafer, then diodes, capacitors, transistors and ring oscillators, fabricated and tested on it.</p>
+<p style="font-size: 14px; color: #BFD0C5">Fall 2018. Cleanroom course at the University of Illinois.</p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #E3ECE4; color: #17362E; padding: 28px 24px; min-height: 150px; display: flex; align-items: flex-end">
+<p style="font-size: 26px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em">A platform 1,400+ people use.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">Solidigm’s AI agent platform</h2>
+<p>Agents, and the governance around them: identity, access and cost controls. A five-person team built it, largely with coding agents.</p>
+<p style="font-size: 14px; color: #BFD0C5">Since June 2026. I lead its development.</p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FBFBF8; padding: 12px">
+<img loading="lazy" decoding="async" src="home/media/sunkissed.webp" alt="The Sunkissed Work home page: the headline “Get your workday back” beside a drawing of a small office." style="width: 100%; aspect-ratio: 1280 / 800; object-fit: cover">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">Sunkissed Work</h2>
+<p>Office fixes and team training for California businesses.</p>
+<p style="font-size: 14px; color: #BFD0C5">Started August 2026.</p>
+<p style="font-size: 15px"><a href="https://sunkissed.work/">sunkissed.work</a></p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #E3ECE4; color: #17362E; padding: 28px 24px; min-height: 150px; display: flex; align-items: flex-end">
+<p style="font-size: 26px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em">Bombardier calls the unit Smart Link Plus.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">A cellular module for aircraft</h2>
+<p>I owned its development at GE Aviation: connectivity in C on embedded Linux, under DO-178C. Bombardier began installing the unit on Challenger jets in August 2021.</p>
+<p style="font-size: 14px; color: #BFD0C5">Aug 2019 to Jun 2021.</p>
+<p style="font-size: 15px"><a href="https://bombardier.com/en/support/enhance-your-aircraft/smart-link-plus">Smart Link Plus on Bombardier’s site</a></p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FBFBF8; padding: 12px">
+<img loading="lazy" decoding="async" src="home/media/gallery.webp" alt="The model gallery: a panel listing five AI models, each of which built its own version of the same profile page." style="width: 100%; aspect-ratio: 1184 / 740; object-fit: cover">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">The model gallery</h2>
+<p>The previous zuabi.dev: one profile, rebuilt by different AI models from the same brief.</p>
+<p style="font-size: 14px; color: #BFD0C5">I keep adding to it.</p>
+<p style="font-size: 15px"><a href="https://github.com/zzfadi/gallery-port">Code</a></p>
+</div>
+</article>
+
+</div>
+
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 56px">
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FBFBF8; padding: 12px">
+<img loading="lazy" decoding="async" src="home/media/physical-ai-lift.jpg" alt="Two camera views side by side. In each, a black robot gripper holds a short cylinder just above a white table." style="width: 100%; aspect-ratio: 1040 / 390; object-fit: cover">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">The Human Touch</h2>
+<p>Robot arms learning when and how to hand something to a person. By the end an arm handed a water bottle to a person on camera.</p>
+<p style="font-size: 14px; color: #BFD0C5">Nov 7 to 8, 2026. Five people, 31 hours, at Physical AI Hacks.</p>
+<p style="font-size: 15px; display: flex; flex-wrap: wrap; gap: 0 20px"><a href="https://youtu.be/GK2B8TnZ3BI">Handover video</a><a href="https://zzfadi.github.io/geotech-robotics-hackathon/">Project page</a></p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #E3ECE4; color: #17362E; padding: 28px 24px; min-height: 150px; display: flex; align-items: flex-end">
+<p style="font-size: 26px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em">A course three sites now teach without me.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">Coding-agent workshops</h2>
+<p>Hands-on workshops for firmware engineers, and a program others can teach. 120+ engineers trained so far. One site teaches it in Polish.</p>
+<p style="font-size: 14px; color: #BFD0C5">2025 to 2026. The first series rated it 4.8 out of 5 (27 responses).</p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FBFBF8; padding: 12px">
+<img loading="lazy" decoding="async" src="home/media/deeptime.jpg" alt="The top of a DeepTime screen: the heading Holocene, and a picture of a dry grassland with trees." style="width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: top">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">DeepTime</h2>
+<p>Shows the geological history under your feet, wherever you’re standing, and pictures each era when you ask.</p>
+<p style="font-size: 14px; color: #BFD0C5">Dec 2025. A web app, built for Kiroween.</p>
+<p style="font-size: 15px; display: flex; flex-wrap: wrap; gap: 0 20px"><a href="https://studio-5849128303-2d9db.web.app">Live app</a><a href="https://github.com/zzfadi/deeptime">Code</a></p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FBFBF8; padding: 12px; display: flex; flex-direction: column; gap: 12px">
+<img loading="lazy" decoding="async" src="home/media/scope-0330.png" alt="An oscilloscope screen showing a repeating orange waveform. The line of text at the top of the screen includes the date and time Thu Nov 08 03:30:21 2018." style="width: 100%; aspect-ratio: 800 / 503; object-fit: cover">
+<img loading="lazy" decoding="async" src="home/media/scope-2115.png" alt="An oscilloscope screen showing a square data signal with two vertical cursors. The readout says the cursors are 44 microseconds apart." style="width: 100%; aspect-ratio: 800 / 503; object-fit: cover">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">A lighting control unit</h2>
+<p>The control unit for an artwork of 270 glass tubes: an RS485 bus, an AVR microcontroller, and DMX512 to drive the LEDs.</p>
+<p style="font-size: 14px; color: #BFD0C5">Fall 2018. Senior design, a team of three. The top capture is stamped 03:30 in the morning.</p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FBFBF8; padding: 12px">
+<img loading="lazy" decoding="async" src="home/media/meter.webp" alt="The Gemini API Tester: a dark console with a field for an API key and tabs for image, video, text, audio, embeddings and diagnostics." style="width: 100%; aspect-ratio: 1280 / 800; object-fit: cover">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">Gemini API Tester</h2>
+<p>A web console for testing Gemini and Veo API keys.</p>
+<p style="font-size: 15px"><a href="https://meter.zuabi.dev/">meter.zuabi.dev</a></p>
+</div>
+</article>
+
+</div>
+
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 56px">
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FBFBF8; color: #17362E; padding: 20px">
+<div role="img" aria-label="Bar chart of nine scores in order: 9.7, 12.1, 18.5, 28.6, 24.8, 13.3, 15.8, 28.2 and about 28.6." style="display: flex; align-items: flex-end; gap: 10px; height: 170px; border-bottom: 2px solid #17362E">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">9.7</span><div style="width: 100%; max-width: 24px; height: 45px; background: #17362E; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 24px; height: 56px; background: #17362E; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 24px; height: 85px; background: #17362E; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">28.6</span><div style="width: 100%; max-width: 24px; height: 132px; background: #17362E; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 24px; height: 114px; background: #17362E; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">13.3</span><div style="width: 100%; max-width: 24px; height: 61px; background: #17362E; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 24px; height: 73px; background: #17362E; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 24px; height: 130px; background: #17362E; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">~28.6</span><div style="width: 100%; max-width: 24px; height: 132px; background: #17362E; border-radius: 4px 4px 0 0"></div></div>
+</div>
+<div aria-hidden="true" style="display: flex; gap: 10px; margin-top: 6px; font-size: 13px; line-height: 1.2; text-align: center">
+<span style="flex: 1">1</span><span style="flex: 1">2</span><span style="flex: 1">3</span><span style="flex: 1">4</span><span style="flex: 1">5</span><span style="flex: 1">6</span><span style="flex: 1">7</span><span style="flex: 1">8</span><span style="flex: 1">9</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">Nine submissions</h2>
+<p>My first time training models: Akkadian cuneiform into English. The score went from 9.7 to 28.6, and some submissions went backwards.</p>
+<p style="font-size: 14px; color: #BFD0C5">Jan to Mar 2026. Kaggle Deep Past Challenge.</p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FBFBF8; padding: 12px">
+<img loading="lazy" decoding="async" src="home/media/sandbox-inception.webp" alt="The top of the Sandbox Inception write-up: the title, a one-line summary, and four counts." style="width: 100%; aspect-ratio: 1280 / 800; object-fit: cover">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">Sandbox Inception</h2>
+<p>A write-up. I used agents to test three sandbox platforms that call themselves agent-native. Every one of them needed a human to sign up in a browser before an agent could start.</p>
+<p style="font-size: 14px; color: #BFD0C5">Mar 7, 2026. AI Tinkerers Sandbox Symposium.</p>
+<p style="font-size: 15px; display: flex; flex-wrap: wrap; gap: 0 20px"><a href="https://zzfadi.github.io/sandbox-inception/">Write-up</a><a href="https://github.com/zzfadi/sandbox-inception">Code</a></p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #E3ECE4; color: #17362E; padding: 28px 24px; min-height: 150px; display: flex; align-items: flex-end">
+<p style="font-size: 26px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em">A control that sits beside a clinician.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">DeskDeck</h2>
+<p>A small physical control with a round display. One tap stages a follow-up from what’s on screen, a person approves it, and the device confirms it was saved.</p>
+<p style="font-size: 14px; color: #BFD0C5">Sep 12, 2026. ESP32-S3 firmware, a Python bridge, a Next.js app. Built solo at AI Tinkerers SF.</p>
+<p style="font-size: 15px"><a href="https://github.com/zzfadi/deskdeck">Code</a></p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #E3ECE4; color: #17362E; padding: 28px 24px; min-height: 150px; display: flex; align-items: flex-end">
+<p style="font-size: 26px; line-height: 1.15; font-weight: 600; letter-spacing: -0.01em">Firmware inside enterprise SSDs.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">SSD firmware</h2>
+<p>NAND and media-management firmware in C at Intel, then transport-layer firmware in C++ at Solidigm, where I led delivery across development, validation and manufacturing teams.</p>
+<p style="font-size: 14px; color: #BFD0C5">Jun 2021 to Jun 2026.</p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FBFBF8; padding: 12px">
+<img loading="lazy" decoding="async" src="home/media/aes-waveform.webp" alt="A logic simulator window: a column of signal names on the left, and their green waveforms stepping through the rounds of a decryption on the right." style="width: 100%; aspect-ratio: 1400 / 742; object-fit: cover">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">A game on an FPGA</h2>
+<p>Battle City, built with a lab partner: two players and an AI opponent, hardware and software together.</p>
+<p style="font-size: 14px; color: #BFD0C5">Spring 2018. Altera DE2-115, 10,774 LUTs, 127.16 MHz. Pictured: an AES decryption lab from the same course.</p>
+</div>
+</article>
+
+<article style="display: flex; flex-direction: column; gap: 14px">
+<div style="background: #FBFBF8; padding: 12px">
+<img loading="lazy" decoding="async" src="home/media/colay.jpg" alt="A macOS desktop with a small round character sitting on the edge of a window, beside its control panel." style="width: 100%; aspect-ratio: 960 / 600; object-fit: cover">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h2 style="font-size: 22px; line-height: 1.2; font-weight: 600">colay</h2>
+<p>A small procedural companion that lives on the macOS desktop.</p>
+<p style="font-size: 14px; color: #BFD0C5">Experimental.</p>
+<p style="font-size: 15px"><a href="https://github.com/zzfadi/colay">Code</a></p>
+</div>
+</article>
+
+</div>
+
+</div>
+</main>
+
+<footer style="flex-grow: 1; background: #102822; padding: 56px 0 64px">
+<div style="max-width: 1240px; margin: 0 auto; padding: 0 48px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px 48px">
+<div>
+<p style="font-weight: 600; font-size: 22px; line-height: 1.2">Fadi Zuabi</p>
+<p style="margin-top: 6px; color: #BFD0C5">Machine learning engineer, California</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 0 28px">
+<a href="mailto:fadi.b.zuabi@gmail.com" style="padding: 10px 0">fadi.b.zuabi@gmail.com</a>
+<a href="https://x.com/fadi_zuabi" style="padding: 10px 0">X</a>
+<a href="https://www.linkedin.com/in/fadi-zuabi" style="padding: 10px 0">LinkedIn</a>
+<a href="https://github.com/zzfadi" style="padding: 10px 0">GitHub</a>
+</div>
+</div>
+</footer>
+
+</div>
+</div><div class="fog"></div><div class="curl"></div></div>
+<div class="roll"></div>
+</section>
+
+<section class="card" id="in-my-own-words" data-key="in-my-own-words" aria-label="In my own words" style="--p1:#FFFFFF;--p2:#DCDFE6;--p3:#A4A9B6">
+<div class="pool"></div>
+<div class="clip"><div class="page pg-words">
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #FAFBFC; color: #14161A; font-family: Newsreader, Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.5">
+
+<div style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px 48px 0">
+
+<nav aria-label="Contact" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px; margin-bottom: 88px">
+<span style="font-weight: 500; font-size: 21px">Fadi Zuabi</span>
+<div style="display: flex; flex-wrap: wrap; gap: 0 28px">
+<a href="https://x.com/fadi_zuabi" style="padding: 9px 0">X</a>
+<a href="https://www.linkedin.com/in/fadi-zuabi" style="padding: 9px 0">LinkedIn</a>
+<a href="https://github.com/zzfadi" style="padding: 9px 0">GitHub</a>
+<a href="mailto:fadi.b.zuabi@gmail.com" style="padding: 9px 0">Email</a>
+</div>
+</nav>
+
+<p style="margin-bottom: 40px; font-style: italic; font-size: 19px; color: #4A4F5A">Ten sentences from my résumé. The record is in the margin.</p>
+
+<section style="border-top: 1px solid #D5D9E2; padding: 40px 0; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: flex-start">
+<div style="flex: 1.5 1 520px; min-width: 0">
+<p style="font-size: clamp(28px, 2.9vw, 40px); line-height: 1.22; letter-spacing: -0.01em">Came to the U.S. in 2014.<sup>1</sup> Learned English, continued engineering.<sup>2</sup></p>
+</div>
+<ol style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px; font-size: 15.5px">
+<li style="display: flex; gap: 10px"><span style="flex: 0 0 22px; color: #2338C2; font-weight: 500">1</span><p>2010: started computer engineering at Damascus University. 2014: arrived in the U.S.</p></li>
+<li style="display: flex; gap: 10px"><span style="flex: 0 0 22px; color: #2338C2; font-weight: 500">2</span><p>English classes at Arkansas State in 2014. Moraine Valley Community College, 2014 to 2015. The University of Illinois Urbana-Champaign from 2016, electrical engineering from 2017. B.S. Electrical Engineering, August 2019.</p></li>
+</ol>
+</section>
+
+<section style="border-top: 1px solid #D5D9E2; padding: 40px 0; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: flex-start">
+<div style="flex: 1.5 1 520px; min-width: 0">
+<p style="font-size: clamp(28px, 2.9vw, 40px); line-height: 1.22; letter-spacing: -0.01em">Wanted to understand how technology works underneath. Built FPGA projects<sup>3</sup> and made devices on my own silicon wafer.<sup>4</sup></p>
+<div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px">
+<img loading="lazy" decoding="async" src="home/media/wafer.jpg" alt="A round silicon wafer in a carrier, photographed under the yellow light of a cleanroom. A cross of patterned dies runs across it." style="flex: 1 1 120px; min-width: 0; height: 180px; object-fit: cover">
+<img loading="lazy" decoding="async" src="home/media/dies.jpg" alt="Close view of the wafer surface: rows of small test structures and devices repeated in a grid." style="flex: 1 1 120px; min-width: 0; height: 180px; object-fit: cover">
+<img loading="lazy" decoding="async" src="home/media/aes-waveform.webp" alt="A logic simulator window: a column of signal names on the left, and their green waveforms stepping through the rounds of a decryption on the right." style="flex: 2.6 1 240px; min-width: 0; height: 180px; object-fit: cover; object-position: left">
+</div>
+</div>
+<ol style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px; font-size: 15.5px">
+<li style="display: flex; gap: 10px"><span style="flex: 0 0 22px; color: #2338C2; font-weight: 500">3</span><p>Spring 2018: Battle City on an FPGA board, with a lab partner. Two players and an AI opponent, on an Altera DE2-115: 10,774 LUTs at 127.16 MHz. Pictured on the right: an AES decryption lab from the same course, April 2018.</p></li>
+<li style="display: flex; gap: 10px"><span style="flex: 0 0 22px; color: #2338C2; font-weight: 500">4</span><p>Fall 2018, in the cleanroom course: diodes, capacitors, transistors and ring oscillators, fabricated and tested. Pictured: my wafer under the yellow light of the cleanroom, and the devices up close.</p></li>
+</ol>
+</section>
+
+<section style="border-top: 1px solid #D5D9E2; padding: 40px 0; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: flex-start">
+<div style="flex: 1.5 1 520px; min-width: 0">
+<p style="font-size: clamp(28px, 2.9vw, 40px); line-height: 1.22; letter-spacing: -0.01em">At GE Aviation, worked on safety-critical embedded software, hardware and testing.<sup>5</sup></p>
+</div>
+<ol style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px; font-size: 15.5px">
+<li style="display: flex; gap: 10px"><span style="flex: 0 0 22px; color: #2338C2; font-weight: 500">5</span><div style="display: flex; flex-direction: column; gap: 6px"><p>Aug 2019 to Jun 2021. I owned cellular-module development for an aircraft health monitoring unit, in C on embedded Linux under DO-178C. Bombardier calls the unit Smart Link Plus and began installing it on Challenger jets in August 2021.</p><p><a href="https://bombardier.com/en/support/enhance-your-aircraft/smart-link-plus">Smart Link Plus on Bombardier’s site</a></p></div></li>
+</ol>
+</section>
+
+<section style="border-top: 1px solid #D5D9E2; padding: 40px 0; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: flex-start">
+<div style="flex: 1.5 1 520px; min-width: 0">
+<p style="font-size: clamp(28px, 2.9vw, 40px); line-height: 1.22; letter-spacing: -0.01em">Moved into SSD firmware at Intel,<sup>6</sup> then grew into leading firmware delivery at Solidigm.<sup>7</sup></p>
+</div>
+<ol style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px; font-size: 15.5px">
+<li style="display: flex; gap: 10px"><span style="flex: 0 0 22px; color: #2338C2; font-weight: 500">6</span><p>Jun to Dec 2021, Intel NAND Storage Group: NAND and media-management firmware in C for enterprise SSDs. The group became Solidigm after the SK hynix acquisition.</p></li>
+<li style="display: flex; gap: 10px"><span style="flex: 0 0 22px; color: #2338C2; font-weight: 500">7</span><p>Dec 2021 to Jun 2026: delivery across development, validation and manufacturing teams, and transport-layer firmware in C++. Fixing a drive-spare bug cut one reliability run from 15 weeks to 13. Open-source compilers cut one product’s compile times by more than half.</p></li>
+</ol>
+</section>
+
+<section style="border-top: 1px solid #D5D9E2; padding: 40px 0; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: flex-start">
+<div style="flex: 1.5 1 520px; min-width: 0">
+<p style="font-size: clamp(28px, 2.9vw, 40px); line-height: 1.22; letter-spacing: -0.01em">Teaching stayed part of the journey: repair technicians, FPGA students,<sup>8</sup> then engineers learning to work with coding agents.<sup>9</sup></p>
+</div>
+<ol style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px; font-size: 15.5px">
+<li style="display: flex; gap: 10px"><span style="flex: 0 0 22px; color: #2338C2; font-weight: 500">8</span><p>Course assistant for FPGA and SoC projects, August to December 2018.</p></li>
+<li style="display: flex; gap: 10px"><span style="flex: 0 0 22px; color: #2338C2; font-weight: 500">9</span><p>120+ engineers trained so far. The first series rated the workshops 4.8 out of 5 (27 responses). Six sites in 2026. Three now teach it without me, one in Polish.</p></li>
+</ol>
+</section>
+
+<section style="border-top: 1px solid #D5D9E2; padding: 40px 0; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: flex-start">
+<div style="flex: 1.5 1 520px; min-width: 0">
+<p style="font-size: clamp(28px, 2.9vw, 40px); line-height: 1.22; letter-spacing: -0.01em">Now leading Solidigm’s AI agent platform: building agents, setting up governance, and helping teams use them.<sup>10</sup></p>
+</div>
+<ol style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px; font-size: 15.5px">
+<li style="display: flex; gap: 10px"><span style="flex: 0 0 22px; color: #2338C2; font-weight: 500">10</span><p>Since June 2026. 1,400+ people use it. A five-person team built it, largely with coding agents. Governance covers agent identity, access and cost controls. Setup went from half a day of requests to one pasted prompt.</p></li>
+</ol>
+</section>
+
+<section style="border-top: 1px solid #D5D9E2; padding: 40px 0; display: flex; flex-wrap: wrap; gap: 28px 56px; align-items: flex-start">
+<div style="flex: 1.5 1 520px; min-width: 0">
+<p style="font-size: clamp(28px, 2.9vw, 40px); line-height: 1.22; letter-spacing: -0.01em">Still learning and building with the AI community.<sup>11</sup></p>
+<div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px">
+<img loading="lazy" decoding="async" src="home/media/physical-ai-lift.jpg" alt="Two camera views side by side. In each, a black robot gripper holds a short cylinder just above a white table." style="flex: 2.6 1 260px; min-width: 0; height: 148px; object-fit: cover">
+<img loading="lazy" decoding="async" src="home/media/sandbox-inception.webp" alt="The top of the Sandbox Inception write-up: the title, a one-line summary, and four counts." style="flex: 1.6 1 160px; min-width: 0; height: 148px; object-fit: cover">
+</div>
+</div>
+<ol style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 16px; font-size: 15.5px">
+<li style="display: flex; gap: 10px"><span style="flex: 0 0 22px; color: #2338C2; font-weight: 500">11</span><div style="display: flex; flex-direction: column; gap: 6px"><p>Nov 2026, Physical AI Hacks: five of us, 31 hours, and an arm that handed a water bottle to a person on camera. Sep 2026: DeskDeck, built solo at AI Tinkerers SF. Mar 2026: Sandbox Inception, for the AI Tinkerers Sandbox Symposium. Jan to Mar 2026: my first time training models, nine scored submissions from 9.7 to 28.6. Dec 2025: DeepTime, for Kiroween. Pictured: the right arm lifting a cylinder, and the front page of the Sandbox Inception write-up.</p><p style="display: flex; flex-wrap: wrap; gap: 0 18px"><a href="https://youtu.be/GK2B8TnZ3BI">Handover video</a><a href="https://github.com/zzfadi/deskdeck">DeskDeck code</a><a href="https://zzfadi.github.io/sandbox-inception/">Write-up</a><a href="https://studio-5849128303-2d9db.web.app">DeepTime, live</a></p></div></li>
+</ol>
+</section>
+
+<section style="border-top: 1px solid #D5D9E2; padding: 64px 0 72px">
+<p style="max-width: 900px; font-size: clamp(36px, 4.6vw, 64px); line-height: 1.08; letter-spacing: -0.02em">My goal is to make Super Intelligence useful for everyone.</p>
+</section>
+
+</div>
+
+<footer style="flex-grow: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 48px 56px">
+<div style="border-top: 1px solid #D5D9E2; padding-top: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 48px">
+<span style="color: #4A4F5A">Fadi Zuabi, California</span>
+<div style="display: flex; flex-wrap: wrap; gap: 0 28px">
+<a href="mailto:fadi.b.zuabi@gmail.com" style="padding: 9px 0">fadi.b.zuabi@gmail.com</a>
+<a href="https://x.com/fadi_zuabi" style="padding: 9px 0">X</a>
+<a href="https://www.linkedin.com/in/fadi-zuabi" style="padding: 9px 0">LinkedIn</a>
+<a href="https://github.com/zzfadi" style="padding: 9px 0">GitHub</a>
+</div>
+</div>
+</footer>
+
+</div>
+</div><div class="fog"></div><div class="curl"></div></div>
+<div class="roll"></div>
+</section>
+
+<section class="card" id="whos-asking" data-key="whos-asking" aria-label="Who’s asking?" style="--p1:#FFEA94;--p2:#F2C21F;--p3:#A67F00">
+<div class="pool"></div>
+<div class="clip"><div class="page pg-asking">
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #FFFFFF; color: #000000; font-family: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.5">
+
+<header style="background: #FFD43B; padding: 20px 0 80px">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 48px">
+<nav aria-label="Contact" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px; margin-bottom: 80px">
+<span style="font-weight: 800; font-size: 20px">Fadi Zuabi</span>
+<div style="display: flex; flex-wrap: wrap; gap: 0 28px; font-size: 16px">
+<a href="https://x.com/fadi_zuabi" style="padding: 10px 0">X</a>
+<a href="https://www.linkedin.com/in/fadi-zuabi" style="padding: 10px 0">LinkedIn</a>
+<a href="https://github.com/zzfadi" style="padding: 10px 0">GitHub</a>
+<a href="mailto:fadi.b.zuabi@gmail.com" style="padding: 10px 0">Email</a>
+</div>
+</nav>
+<h1 style="font-size: clamp(64px, 10.3vw, 140px); line-height: 0.95; font-weight: 800; letter-spacing: -0.02em">Who’s asking?</h1>
+<p style="margin-top: 24px; max-width: 560px; font-size: 22px; line-height: 1.45">Same record, four ways in. Pick the one that sounds like you.</p>
+<nav aria-label="Four ways in" style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 16px">
+<a href="#hiring" style="display: flex; align-items: center; gap: 14px; min-height: 96px; padding: 20px 22px; background: #FFFFFF; color: #000000; border: 3px solid #000000; border-radius: 18px; text-decoration: none; font-size: 21px; line-height: 1.2; font-weight: 600"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; background: #000000"></span><span>I’m hiring</span></a>
+<a href="#learning" style="display: flex; align-items: center; gap: 14px; min-height: 96px; padding: 20px 22px; background: #FFFFFF; color: #000000; border: 3px solid #000000; border-radius: 18px; text-decoration: none; font-size: 21px; line-height: 1.2; font-weight: 600"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; background: #000000"></span><span>I want to learn this</span></a>
+<a href="#office" style="display: flex; align-items: center; gap: 14px; min-height: 96px; padding: 20px 22px; background: #FFFFFF; color: #000000; border: 3px solid #000000; border-radius: 18px; text-decoration: none; font-size: 21px; line-height: 1.2; font-weight: 600"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; background: #000000"></span><span>I run an office</span></a>
+<a href="#building" style="display: flex; align-items: center; gap: 14px; min-height: 96px; padding: 20px 22px; background: #FFFFFF; color: #000000; border: 3px solid #000000; border-radius: 18px; text-decoration: none; font-size: 21px; line-height: 1.2; font-weight: 600"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; background: #000000"></span><span>I build too</span></a>
+</nav>
+</div>
+</header>
+
+<section id="hiring" style="background: #FFFFFF; color: #000000; padding: 80px 0">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 48px; display: flex; flex-wrap: wrap; gap: 40px 56px; align-items: flex-start">
+<div style="flex: 1 1 300px; max-width: 360px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<h2 style="font-size: 52px; line-height: 1; font-weight: 800; letter-spacing: -0.02em">I’m hiring</h2>
+<p style="font-size: 20px; line-height: 1.5">I lead Solidigm’s AI agent platform, and I teach engineers to work with coding agents. Before that I wrote firmware for seven years.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px">
+<a href="mailto:fadi.b.zuabi@gmail.com" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; background: #000000; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 600">Email me</a>
+<a href="https://www.linkedin.com/in/fadi-zuabi" style="padding: 10px 0">LinkedIn</a>
+</div>
+</div>
+<div style="flex: 2 1 560px; min-width: 0">
+<div style="border-top: 3px solid #000000; padding: 20px 0; display: flex; flex-wrap: wrap; gap: 6px 24px">
+<h3 style="flex: 0 0 200px; font-size: 18px; line-height: 1.3; font-weight: 600">A platform in use</h3>
+<p style="flex: 1 1 300px; min-width: 0">1,400+ people use it. A five-person team built it, largely with coding agents. Its governance covers agent identity, access and cost controls.</p>
+</div>
+<div style="border-top: 3px solid #000000; padding: 20px 0; display: flex; flex-wrap: wrap; gap: 6px 24px">
+<h3 style="flex: 0 0 200px; font-size: 18px; line-height: 1.3; font-weight: 600">Seven years of firmware</h3>
+<p style="flex: 1 1 300px; min-width: 0">Avionics at GE Aviation: I owned the cellular module of a unit Bombardier began installing on Challenger jets in 2021. Then enterprise SSDs at Intel and Solidigm, where I led delivery across development, validation and manufacturing teams.</p>
+</div>
+<div style="border-top: 3px solid #000000; padding: 20px 0; display: flex; flex-wrap: wrap; gap: 6px 24px">
+<h3 style="flex: 0 0 200px; font-size: 18px; line-height: 1.3; font-weight: 600">Two results</h3>
+<p style="flex: 1 1 300px; min-width: 0">Fixing a drive-spare bug cut one SSD reliability run from 15 weeks to 13. Enabling open-source compilers cut one product’s compile times by more than half.</p>
+</div>
+<div style="border-top: 3px solid #000000; padding: 20px 0; display: flex; flex-wrap: wrap; gap: 6px 24px">
+<h3 style="flex: 0 0 200px; font-size: 18px; line-height: 1.3; font-weight: 600">A course that runs without me</h3>
+<p style="flex: 1 1 300px; min-width: 0">120+ engineers trained so far. Three sites now teach it without me, one in Polish.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="learning" style="background: #000000; color: #FFFFFF; padding: 80px 0">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 48px; display: flex; flex-wrap: wrap; gap: 40px 56px; align-items: flex-start">
+<div style="flex: 1 1 300px; max-width: 360px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<h2 style="font-size: 52px; line-height: 1; font-weight: 800; letter-spacing: -0.02em; color: #FFD43B">I want to learn this</h2>
+<p style="font-size: 20px; line-height: 1.5">I teach engineers to work with coding agents, and I write about building with them on X.</p>
+<div>
+<a href="https://x.com/fadi_zuabi" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; background: #FFD43B; color: #000000; border-radius: 999px; text-decoration: none; font-weight: 600">@fadi_zuabi on X</a>
+</div>
+</div>
+<div style="flex: 2 1 560px; min-width: 0">
+<div style="border-top: 3px solid #FFFFFF; padding: 20px 0; display: flex; flex-wrap: wrap; gap: 6px 24px">
+<h3 style="flex: 0 0 200px; font-size: 18px; line-height: 1.3; font-weight: 600">The workshop</h3>
+<p style="flex: 1 1 300px; min-width: 0">Hands-on, made for firmware engineers. The first series rated it 4.8 out of 5 (27 responses). In 2026 it reached six sites.</p>
+</div>
+<div style="border-top: 3px solid #FFFFFF; padding: 20px 0; display: flex; flex-wrap: wrap; gap: 6px 24px">
+<h3 style="flex: 0 0 200px; font-size: 18px; line-height: 1.3; font-weight: 600">A tip to use today</h3>
+<figure style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<blockquote style="display: flex; flex-direction: column; gap: 8px">
+<p>next time you're struggling to setup an AI meta layer tool, just copy paste this to any AI chat you use:</p>
+<p>"Setup this [Skill/ MCP/ Agent/ etc] for me &lt;link to the tool or its docs&gt;. If you need any auth or help from me, give me steps to do it so you can continue"</p>
+</blockquote>
+<figcaption style="font-size: 15px; color: #FFD43B">Posted on X, March 12, 2026</figcaption>
+</figure>
+</div>
+<div style="border-top: 3px solid #FFFFFF; padding: 20px 0; display: flex; flex-wrap: wrap; gap: 6px 24px">
+<h3 style="flex: 0 0 200px; font-size: 18px; line-height: 1.3; font-weight: 600">What learning looks like</h3>
+<figure style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<figcaption>My first time training models: nine scored submissions, from 9.7 to 28.6. Some of them went backwards.</figcaption>
+<div>
+<div role="img" aria-label="Bar chart of nine scores in order: 9.7, 12.1, 18.5, 28.6, 24.8, 13.3, 15.8, 28.2 and about 28.6." style="display: flex; align-items: flex-end; gap: 12px; max-width: 420px; height: 150px; border-bottom: 2px solid #FFFFFF">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">9.7</span><div style="width: 100%; max-width: 26px; height: 39px; background: #FFD43B; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 26px; height: 48px; background: #FFD43B; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 26px; height: 74px; background: #FFD43B; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">28.6</span><div style="width: 100%; max-width: 26px; height: 114px; background: #FFD43B; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 26px; height: 99px; background: #FFD43B; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">13.3</span><div style="width: 100%; max-width: 26px; height: 53px; background: #FFD43B; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 26px; height: 63px; background: #FFD43B; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><div style="width: 100%; max-width: 26px; height: 113px; background: #FFD43B; border-radius: 4px 4px 0 0"></div></div>
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px"><span style="font-size: 13px; font-weight: 600; line-height: 1.2">~28.6</span><div style="width: 100%; max-width: 26px; height: 114px; background: #FFD43B; border-radius: 4px 4px 0 0"></div></div>
+</div>
+<div aria-hidden="true" style="display: flex; gap: 12px; max-width: 420px; margin-top: 6px; font-size: 13px; line-height: 1.2; text-align: center">
+<span style="flex: 1">1</span><span style="flex: 1">2</span><span style="flex: 1">3</span><span style="flex: 1">4</span><span style="flex: 1">5</span><span style="flex: 1">6</span><span style="flex: 1">7</span><span style="flex: 1">8</span><span style="flex: 1">9</span>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+
+<section id="office" style="background: #FFD43B; color: #000000; padding: 80px 0">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 48px; display: flex; flex-wrap: wrap; gap: 40px 56px; align-items: flex-start">
+<div style="flex: 1 1 300px; max-width: 360px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<h2 style="font-size: 52px; line-height: 1; font-weight: 800; letter-spacing: -0.02em">I run an office</h2>
+<p style="font-size: 20px; line-height: 1.5">Sunkissed Work: office fixes and team training for California businesses. I started it in August 2026.</p>
+<div>
+<a href="https://sunkissed.work/" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; background: #000000; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 600">sunkissed.work</a>
+</div>
+</div>
+<div style="flex: 2 1 560px; min-width: 0">
+<img loading="lazy" decoding="async" src="home/media/sunkissed.webp" alt="The Sunkissed Work home page: the headline “Get your workday back” beside a drawing of a small office." style="width: 100%; aspect-ratio: 1280 / 800; object-fit: cover; border: 3px solid #000000; margin-bottom: 24px">
+<div style="border-top: 3px solid #000000; padding: 20px 0; display: flex; flex-wrap: wrap; gap: 6px 24px">
+<h3 style="flex: 0 0 200px; font-size: 18px; line-height: 1.3; font-weight: 600">It starts with a visit</h3>
+<p style="flex: 1 1 300px; min-width: 0">Every engagement starts with a visit, and the price is agreed in writing before work starts.</p>
+</div>
+<div style="border-top: 3px solid #000000; padding: 20px 0; display: flex; flex-wrap: wrap; gap: 6px 24px">
+<h3 style="flex: 0 0 200px; font-size: 18px; line-height: 1.3; font-weight: 600">Small, specific fixes</h3>
+<p style="flex: 1 1 300px; min-width: 0">Small, specific fixes to the work your team already does, measured in hours saved.</p>
+</div>
+<div style="border-top: 3px solid #000000; padding: 20px 0; display: flex; flex-wrap: wrap; gap: 6px 24px">
+<h3 style="flex: 0 0 200px; font-size: 18px; line-height: 1.3; font-weight: 600">One accountable person</h3>
+<p style="flex: 1 1 300px; min-width: 0">Every engagement has one accountable person: me.</p>
+</div>
+<p style="font-size: 15px">These three lines are in the site’s own words.</p>
+</div>
+</div>
+</section>
+
+<section id="building" style="background: #FFFFFF; color: #000000; padding: 80px 0">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 48px; display: flex; flex-wrap: wrap; gap: 40px 56px; align-items: flex-start">
+<div style="flex: 1 1 300px; max-width: 360px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+<h2 style="font-size: 52px; line-height: 1; font-weight: 800; letter-spacing: -0.02em">I build too</h2>
+<p style="font-size: 20px; line-height: 1.5">Here is what I built at recent hackathons. The code is public.</p>
+<div>
+<a href="https://github.com/zzfadi" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; background: #000000; color: #FFFFFF; border-radius: 999px; text-decoration: none; font-weight: 600">GitHub</a>
+</div>
+</div>
+<div style="flex: 2 1 560px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 32px 28px">
+<article style="display: flex; flex-direction: column; gap: 6px">
+<img loading="lazy" decoding="async" src="home/media/physical-ai-lift.jpg" alt="Two camera views side by side. In each, a black robot gripper holds a short cylinder just above a white table." style="width: 100%; aspect-ratio: 1040 / 390; object-fit: cover; border: 3px solid #000000; margin-bottom: 6px">
+<h3 style="font-size: 20px; line-height: 1.3; font-weight: 600">Physical AI Hacks, Nov 2026</h3>
+<p style="font-size: 16px">Five of us, 31 hours. By the end an arm handed a water bottle to a person on camera.</p>
+<p style="font-size: 16px; display: flex; flex-wrap: wrap; gap: 0 20px"><a href="https://zzfadi.github.io/geotech-robotics-hackathon/">Project page</a><a href="https://github.com/zzfadi/geotech-robotics-hackathon">Code</a></p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 6px">
+<img loading="lazy" decoding="async" src="home/media/sandbox-inception.webp" alt="The top of the Sandbox Inception write-up: the title, a one-line summary, and four counts." style="width: 100%; aspect-ratio: 1040 / 390; object-fit: cover; object-position: top; border: 3px solid #000000; margin-bottom: 6px">
+<h3 style="font-size: 20px; line-height: 1.3; font-weight: 600">Sandbox Inception, Mar 2026</h3>
+<p style="font-size: 16px">I used agents to test three sandbox platforms that call themselves agent-native.</p>
+<p style="font-size: 16px; display: flex; flex-wrap: wrap; gap: 0 20px"><a href="https://zzfadi.github.io/sandbox-inception/">Write-up</a><a href="https://github.com/zzfadi/sandbox-inception">Code</a></p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 6px; border-top: 3px solid #000000; padding-top: 18px">
+<h3 style="font-size: 20px; line-height: 1.3; font-weight: 600">DeskDeck, Sep 2026</h3>
+<p style="font-size: 16px">A small physical control that sits beside a clinician. ESP32-S3 firmware, a Python bridge and a Next.js app, built solo.</p>
+<p style="font-size: 16px"><a href="https://github.com/zzfadi/deskdeck">Code</a></p>
+</article>
+<article style="display: flex; flex-direction: column; gap: 6px; border-top: 3px solid #000000; padding-top: 18px">
+<h3 style="font-size: 20px; line-height: 1.3; font-weight: 600">DeepTime, Dec 2025</h3>
+<p style="font-size: 16px">The geological history under your feet, pictured era by era.</p>
+<p style="font-size: 16px; display: flex; flex-wrap: wrap; gap: 0 20px"><a href="https://studio-5849128303-2d9db.web.app">Live app</a><a href="https://github.com/zzfadi/deeptime">Code</a></p>
+</article>
+</div>
+</div>
+</section>
+
+<footer style="flex-grow: 1; background: #000000; color: #FFFFFF; padding: 64px 0">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 48px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px 48px">
+<div>
+<p style="font-weight: 800; font-size: 28px; line-height: 1.1; color: #FFD43B">Fadi Zuabi</p>
+<p style="margin-top: 6px">Machine learning engineer, California</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 0 28px">
+<a href="mailto:fadi.b.zuabi@gmail.com" style="padding: 10px 0">fadi.b.zuabi@gmail.com</a>
+<a href="https://x.com/fadi_zuabi" style="padding: 10px 0">X</a>
+<a href="https://www.linkedin.com/in/fadi-zuabi" style="padding: 10px 0">LinkedIn</a>
+<a href="https://github.com/zzfadi" style="padding: 10px 0">GitHub</a>
+</div>
+</div>
+</footer>
+
+</div>
+</div><div class="fog"></div><div class="curl"></div></div>
+<div class="roll"></div>
+</section>
+
+<section class="card" id="maker-and-user" data-key="maker-and-user" aria-label="Maker and user" style="--p1:#74406F;--p2:#451C43;--p3:#200A1F">
+<div class="pool"></div>
+<div class="clip"><div class="page pg-maker">
+<div style="min-height: 100vh; display: flex; flex-direction: column; background: #FBEDE4; color: #2A0F29; font-family: Figtree, 'Helvetica Neue', Arial, sans-serif; font-size: 17px; line-height: 1.5">
+
+<header style="background: #3A1638; color: #FFFFFF; padding: 20px clamp(24px, 5.9vw, 80px) 72px">
+<nav aria-label="Contact" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 24px; margin-bottom: 80px">
+<span style="font-weight: 800; font-size: 20px">Fadi Zuabi</span>
+<div style="display: flex; flex-wrap: wrap; gap: 0 28px; font-size: 16px">
+<a href="https://x.com/fadi_zuabi" style="padding: 10px 0">X</a>
+<a href="https://www.linkedin.com/in/fadi-zuabi" style="padding: 10px 0">LinkedIn</a>
+<a href="https://github.com/zzfadi" style="padding: 10px 0">GitHub</a>
+<a href="mailto:fadi.b.zuabi@gmail.com" style="padding: 10px 0">Email</a>
+</div>
+</nav>
+<h1 style="max-width: 1000px; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.08; font-weight: 800; letter-spacing: -0.02em">I want to make things that bring happiness to the person who makes them and the person who uses them.</h1>
+<p style="margin-top: 28px; max-width: 620px; font-size: 20px; line-height: 1.5; color: #EBD9E6">So this page has two sides. On the left, who made each thing. On the right, whose hands it reached. Where it hasn’t reached anyone yet, it says so.</p>
+</header>
+
+<main>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr))">
+<p style="background: #3A1638; color: #FF7A59; border-top: 1px solid #5C3559; padding: 18px 48px 18px clamp(24px, 5.9vw, 80px); font-size: 16px; font-weight: 700">Who made it</p>
+<p style="background: #FBEDE4; color: #2A0F29; border-top: 1px solid #E7CFC2; padding: 18px clamp(24px, 5.9vw, 80px) 18px 48px; font-size: 16px; font-weight: 700">Whose hands it reached</p>
+</div>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr))">
+<div style="background: #3A1638; color: #FFFFFF; border-top: 1px solid #5C3559; padding: 40px 48px 40px clamp(24px, 5.9vw, 80px); display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em">The agent platform</h2>
+<p style="font-size: 15px; font-weight: 500; color: #FF7A59">Since June 2026</p>
+<p style="font-size: 18px; color: #EBD9E6">A five-person team, largely with coding agents. I lead its development.</p>
+</div>
+<div style="border-top: 1px solid #E7CFC2; padding: 40px clamp(24px, 5.9vw, 80px) 40px 48px; display: flex; flex-direction: column; gap: 12px">
+<p style="font-size: 22px; line-height: 1.35; font-weight: 500">1,400+ people at Solidigm use it.</p>
+<p style="font-size: 16px">Setup for an agent went from half a day of requests to one pasted prompt.</p>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr))">
+<div style="background: #3A1638; color: #FFFFFF; border-top: 1px solid #5C3559; padding: 40px 48px 40px clamp(24px, 5.9vw, 80px); display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em">Coding-agent workshops</h2>
+<p style="font-size: 15px; font-weight: 500; color: #FF7A59">2025 to 2026</p>
+<p style="font-size: 18px; color: #EBD9E6">I created the workshops and a program others can teach.</p>
+</div>
+<div style="border-top: 1px solid #E7CFC2; padding: 40px clamp(24px, 5.9vw, 80px) 40px 48px; display: flex; flex-direction: column; gap: 12px">
+<p style="font-size: 22px; line-height: 1.35; font-weight: 500">120+ engineers so far. Three sites now teach it without me, one in Polish.</p>
+<p style="font-size: 16px">The first series rated it 4.8 out of 5 (27 responses).</p>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr))">
+<div style="background: #3A1638; color: #FFFFFF; border-top: 1px solid #5C3559; padding: 40px 48px 40px clamp(24px, 5.9vw, 80px); display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em">A faster build</h2>
+<p style="font-size: 15px; font-weight: 500; color: #FF7A59">2025</p>
+<p style="font-size: 18px; color: #EBD9E6">I enabled open-source Clang and Xtensa compilers for one product’s firmware.</p>
+</div>
+<div style="border-top: 1px solid #E7CFC2; padding: 40px clamp(24px, 5.9vw, 80px) 40px 48px; display: flex; flex-direction: column; gap: 12px">
+<p style="font-size: 22px; line-height: 1.35; font-weight: 500">Compile times on that product dropped by more than half.</p>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr))">
+<div style="background: #3A1638; color: #FFFFFF; border-top: 1px solid #5C3559; padding: 40px 48px 40px clamp(24px, 5.9vw, 80px); display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em">SSD firmware</h2>
+<p style="font-size: 15px; font-weight: 500; color: #FF7A59">2021 to 2026</p>
+<p style="font-size: 18px; color: #EBD9E6">I wrote NAND and media-management firmware at Intel and transport-layer firmware at Solidigm, where I also led delivery across development, validation and manufacturing teams.</p>
+</div>
+<div style="border-top: 1px solid #E7CFC2; padding: 40px clamp(24px, 5.9vw, 80px) 40px 48px; display: flex; flex-direction: column; gap: 12px">
+<p style="font-size: 22px; line-height: 1.35; font-weight: 500">It runs inside enterprise SSDs.</p>
+<p style="font-size: 16px">Fixing a drive-spare bug cut one reliability run from 15 weeks to 13.</p>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr))">
+<div style="background: #3A1638; color: #FFFFFF; border-top: 1px solid #5C3559; padding: 40px 48px 40px clamp(24px, 5.9vw, 80px); display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em">A cellular module</h2>
+<p style="font-size: 15px; font-weight: 500; color: #FF7A59">2019 to 2021</p>
+<p style="font-size: 18px; color: #EBD9E6">At GE Aviation I owned its development: C on embedded Linux, under DO-178C.</p>
+</div>
+<div style="border-top: 1px solid #E7CFC2; padding: 40px clamp(24px, 5.9vw, 80px) 40px 48px; display: flex; flex-direction: column; gap: 12px">
+<p style="font-size: 22px; line-height: 1.35; font-weight: 500">Bombardier calls the unit Smart Link Plus and began installing it on Challenger jets in August 2021.</p>
+<p style="font-size: 16px"><a href="https://bombardier.com/en/support/enhance-your-aircraft/smart-link-plus">Smart Link Plus on Bombardier’s site</a></p>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr))">
+<div style="background: #3A1638; color: #FFFFFF; border-top: 1px solid #5C3559; padding: 40px 48px 40px clamp(24px, 5.9vw, 80px); display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em">The Human Touch</h2>
+<p style="font-size: 15px; font-weight: 500; color: #FF7A59">Nov 7 to 8, 2026</p>
+<p style="font-size: 18px; color: #EBD9E6">Five of us, in 31 hours, at Physical AI Hacks. I led the team and the robot stack.</p>
+</div>
+<div style="border-top: 1px solid #E7CFC2; padding: 40px clamp(24px, 5.9vw, 80px) 40px 48px; display: flex; flex-direction: column; gap: 14px">
+<p style="font-size: 22px; line-height: 1.35; font-weight: 500">By the end an arm handed a water bottle to a person on camera.</p>
+<img loading="lazy" decoding="async" src="home/media/physical-ai-lift.jpg" alt="Two camera views side by side. In each, a black robot gripper holds a short cylinder just above a white table." style="width: 100%; aspect-ratio: 1040 / 390; object-fit: cover">
+<p style="font-size: 16px">Pictured: the right arm lifting a cylinder. <a href="https://youtu.be/GK2B8TnZ3BI">Handover video</a></p>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr))">
+<div style="background: #3A1638; color: #FFFFFF; border-top: 1px solid #5C3559; padding: 40px 48px 40px clamp(24px, 5.9vw, 80px); display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em">DeskDeck</h2>
+<p style="font-size: 15px; font-weight: 500; color: #FF7A59">Sep 12, 2026</p>
+<p style="font-size: 18px; color: #EBD9E6">Me, solo, at an AI Tinkerers SF hackathon.</p>
+</div>
+<div style="border-top: 1px solid #E7CFC2; padding: 40px clamp(24px, 5.9vw, 80px) 40px 48px; display: flex; flex-direction: column; gap: 12px">
+<p style="font-size: 22px; line-height: 1.35; font-weight: 500">No one yet.</p>
+<p style="font-size: 16px">It is a control meant to sit beside a clinician. The demo uses synthetic patients. <a href="https://github.com/zzfadi/deskdeck">Code</a></p>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr))">
+<div style="background: #3A1638; color: #FFFFFF; border-top: 1px solid #5C3559; padding: 40px 48px 40px clamp(24px, 5.9vw, 80px); display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em">DeepTime</h2>
+<p style="font-size: 15px; font-weight: 500; color: #FF7A59">Dec 2025</p>
+<p style="font-size: 18px; color: #EBD9E6">Built for the Kiroween hackathon.</p>
+</div>
+<div style="border-top: 1px solid #E7CFC2; padding: 40px clamp(24px, 5.9vw, 80px) 40px 48px; display: flex; flex-direction: column; gap: 12px">
+<p style="font-size: 22px; line-height: 1.35; font-weight: 500">Anyone with the link.</p>
+<p style="font-size: 16px">It shows the geological history under your feet, wherever you’re standing. <a href="https://studio-5849128303-2d9db.web.app">Live app</a></p>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr))">
+<div style="background: #3A1638; color: #FFFFFF; border-top: 1px solid #5C3559; padding: 40px 48px 40px clamp(24px, 5.9vw, 80px); display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em">Sunkissed Work</h2>
+<p style="font-size: 15px; font-weight: 500; color: #FF7A59">Since August 2026</p>
+<p style="font-size: 18px; color: #EBD9E6">Me. I started it to do office fixes and team training.</p>
+</div>
+<div style="border-top: 1px solid #E7CFC2; padding: 40px clamp(24px, 5.9vw, 80px) 40px 48px; display: flex; flex-direction: column; gap: 14px">
+<p style="font-size: 22px; line-height: 1.35; font-weight: 500">Built for offices in California: dental and medical practices, law and accounting firms, contractors and public teams.</p>
+<img loading="lazy" decoding="async" src="home/media/sunkissed.webp" alt="The Sunkissed Work home page: the headline “Get your workday back” beside a drawing of a small office." style="width: 100%; max-width: 300px; aspect-ratio: 1280 / 800; object-fit: cover">
+<p style="font-size: 16px"><a href="https://sunkissed.work/">sunkissed.work</a></p>
+</div>
+</section>
+
+<section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr))">
+<div style="background: #3A1638; color: #FFFFFF; border-top: 1px solid #5C3559; padding: 40px 48px 40px clamp(24px, 5.9vw, 80px); display: flex; flex-direction: column; gap: 10px">
+<h2 style="font-size: 30px; line-height: 1.1; font-weight: 800; letter-spacing: -0.01em">The wafer</h2>
+<p style="font-size: 15px; font-weight: 500; color: #FF7A59">Fall 2018</p>
+<p style="font-size: 18px; color: #EBD9E6">Me, in the cleanroom course at Illinois.</p>
+<img loading="lazy" decoding="async" src="home/media/wafer.jpg" alt="A round silicon wafer in a carrier, photographed under the yellow light of a cleanroom. A cross of patterned dies runs across it." style="margin-top: 6px; width: 180px; aspect-ratio: 557 / 743; object-fit: cover">
+</div>
+<div style="border-top: 1px solid #E7CFC2; padding: 40px clamp(24px, 5.9vw, 80px) 40px 48px; display: flex; flex-direction: column; gap: 12px">
+<p style="font-size: 22px; line-height: 1.35; font-weight: 500">Me. I wanted to understand how technology works underneath.</p>
+</div>
+</section>
+
+</main>
+
+<footer style="flex-grow: 1; background: #3A1638; color: #FFFFFF; padding: 64px clamp(24px, 5.9vw, 80px) 72px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px 48px">
+<div>
+<p style="font-weight: 800; font-size: 26px; line-height: 1.15">Fadi Zuabi</p>
+<p style="margin-top: 6px; color: #EBD9E6">Machine learning engineer, California</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 0 28px">
+<a href="mailto:fadi.b.zuabi@gmail.com" style="padding: 10px 0">fadi.b.zuabi@gmail.com</a>
+<a href="https://x.com/fadi_zuabi" style="padding: 10px 0">X</a>
+<a href="https://www.linkedin.com/in/fadi-zuabi" style="padding: 10px 0">LinkedIn</a>
+<a href="https://github.com/zzfadi" style="padding: 10px 0">GitHub</a>
+</div>
+</div>
+</footer>
+
+</div>
+</div><div class="fog"></div><div class="curl"></div></div>
+<div class="roll"></div>
+</section>
+</div>
+
+<button type="button" id="fold" aria-label="Open the archive"><span class="lab" id="fold-lab">Archive</span><span class="ear" aria-hidden="true"></span></button>
+
+<span id="archive"></span>
+<div id="scene2" aria-label="Archive: forty pages built by different AI models, and the CoFlow notice">
+<div id="ingot" aria-hidden="true"></div>
+<a class="tile" href="gallery.html#minimal-opus" data-design="Minimal" data-model="Claude Opus 4.5" data-date="2025-11" aria-label="Minimal, by Claude Opus 4.5, Nov 2025"><img src="home/media/archive/minimal-opus.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Minimal, Claude Opus 4.5</span><i></i></a>
+<a class="tile" href="gallery.html#minimal-gemini" data-design="Minimal" data-model="Gemini 3 Pro" data-date="2025-11" aria-label="Minimal, by Gemini 3 Pro, Nov 2025"><img src="home/media/archive/minimal-gemini.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Minimal, Gemini 3 Pro</span><i></i></a>
+<a class="tile" href="gallery.html#minimal-gpt" data-design="Minimal" data-model="GPT-5.1-Codex" data-date="2025-11" aria-label="Minimal, by GPT-5.1-Codex, Nov 2025"><img src="home/media/archive/minimal-gpt.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Minimal, GPT-5.1-Codex</span><i></i></a>
+<a class="tile" href="gallery.html#minimal-grok" data-design="Minimal" data-model="Grok Code Fast 1" data-date="2025-11" aria-label="Minimal, by Grok Code Fast 1, Nov 2025"><img src="home/media/archive/minimal-grok.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Minimal, Grok Code Fast 1</span><i></i></a>
+<a class="tile" href="gallery.html#minimal-raptor-mini" data-design="Minimal" data-model="Raptor mini (Preview)" data-date="2025-11" aria-label="Minimal, by Raptor mini (Preview), Nov 2025"><img src="home/media/archive/minimal-raptor-mini.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Minimal, Raptor mini (Preview)</span><i></i></a>
+<a class="tile" href="gallery.html#signal-gemini" data-design="Signal" data-model="Gemini 3 Pro" data-date="2025-11" aria-label="Signal, by Gemini 3 Pro, Nov 2025"><img src="home/media/archive/signal-gemini.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Signal, Gemini 3 Pro</span><i></i></a>
+<a class="tile" href="gallery.html#signal-grok" data-design="Signal" data-model="Grok Code Fast 1" data-date="2025-11" aria-label="Signal, by Grok Code Fast 1, Nov 2025"><img src="home/media/archive/signal-grok.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Signal, Grok Code Fast 1</span><i></i></a>
+<a class="tile" href="gallery.html#signal-gpt" data-design="Signal" data-model="GPT-5.1-Codex" data-date="2025-11" aria-label="Signal, by GPT-5.1-Codex, Nov 2025"><img src="home/media/archive/signal-gpt.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Signal, GPT-5.1-Codex</span><i></i></a>
+<a class="tile" href="gallery.html#signal-opus" data-design="Signal" data-model="Claude Opus 4.5" data-date="2025-11" aria-label="Signal, by Claude Opus 4.5, Nov 2025"><img src="home/media/archive/signal-opus.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Signal, Claude Opus 4.5</span><i></i></a>
+<a class="tile" href="gallery.html#signal-raptor-mini" data-design="Signal" data-model="Raptor mini (Preview)" data-date="2025-11" aria-label="Signal, by Raptor mini (Preview), Nov 2025"><img src="home/media/archive/signal-raptor-mini.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Signal, Raptor mini (Preview)</span><i></i></a>
+<a class="tile" href="gallery.html#terminal-opus-legacy" data-design="Terminal" data-model="Claude Opus 4.1 (Legacy)" data-date="2025-09" aria-label="Terminal, by Claude Opus 4.1 (Legacy), Sep 2025"><img src="home/media/archive/terminal-opus-legacy.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Terminal, Claude Opus 4.1 (Legacy)</span><i></i></a>
+<a class="tile" href="gallery.html#terminal-opus" data-design="Terminal" data-model="Claude Opus 4.5" data-date="2025-11" aria-label="Terminal, by Claude Opus 4.5, Nov 2025"><img src="home/media/archive/terminal-opus.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Terminal, Claude Opus 4.5</span><i></i></a>
+<a class="tile" href="gallery.html#terminal-gemini" data-design="Terminal" data-model="Gemini 3 Pro" data-date="2025-11" aria-label="Terminal, by Gemini 3 Pro, Nov 2025"><img src="home/media/archive/terminal-gemini.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Terminal, Gemini 3 Pro</span><i></i></a>
+<a class="tile" href="gallery.html#terminal-gpt" data-design="Terminal" data-model="GPT-5.1-Codex" data-date="2025-11" aria-label="Terminal, by GPT-5.1-Codex, Nov 2025"><img src="home/media/archive/terminal-gpt.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Terminal, GPT-5.1-Codex</span><i></i></a>
+<a class="tile" href="gallery.html#terminal-grok" data-design="Terminal" data-model="Grok Code Fast 1" data-date="2025-11" aria-label="Terminal, by Grok Code Fast 1, Nov 2025"><img src="home/media/archive/terminal-grok.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Terminal, Grok Code Fast 1</span><i></i></a>
+<a class="tile" href="gallery.html#terminal-sonnet" data-design="Terminal" data-model="Claude Sonnet 4.5" data-date="2025-11" aria-label="Terminal, by Claude Sonnet 4.5, Nov 2025"><img src="home/media/archive/terminal-sonnet.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Terminal, Claude Sonnet 4.5</span><i></i></a>
+<a class="tile" href="gallery.html#pretext-opus" data-design="Pretext" data-model="Claude Opus 4.6" data-date="2026-03" aria-label="Pretext, by Claude Opus 4.6, Mar 2026"><img src="home/media/archive/pretext-opus.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Pretext, Claude Opus 4.6</span><i></i></a>
+<a class="tile" href="gallery.html#pretext-gpt" data-design="Pretext" data-model="GPT-5.4" data-date="2026-03" aria-label="Pretext, by GPT-5.4, Mar 2026"><img src="home/media/archive/pretext-gpt.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Pretext, GPT-5.4</span><i></i></a>
+<a class="tile" href="gallery.html#pretext-copilot" data-design="Pretext" data-model="GitHub Copilot (Opus 4.6)" data-date="2026-03" aria-label="Pretext, by GitHub Copilot (Opus 4.6), Mar 2026"><img src="home/media/archive/pretext-copilot.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Pretext, GitHub Copilot (Opus 4.6)</span><i></i></a>
+<a class="tile" href="gallery.html#pretext-gemini" data-design="Pretext" data-model="Gemini 3.1 Pro (Preview)" data-date="2026-03" aria-label="Pretext, by Gemini 3.1 Pro (Preview), Mar 2026"><img src="home/media/archive/pretext-gemini.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Pretext, Gemini 3.1 Pro (Preview)</span><i></i></a>
+<a class="tile" href="gallery.html#pretext-gpt53-codex" data-design="Pretext" data-model="GPT-5.3-Codex" data-date="2026-03" aria-label="Pretext, by GPT-5.3-Codex, Mar 2026"><img src="home/media/archive/pretext-gpt53-codex.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Pretext, GPT-5.3-Codex</span><i></i></a>
+<a class="tile" href="gallery.html#pretext-sonnet" data-design="Pretext" data-model="GitHub Copilot (Sonnet 4.6)" data-date="2026-03" aria-label="Pretext, by GitHub Copilot (Sonnet 4.6), Mar 2026"><img src="home/media/archive/pretext-sonnet.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Pretext, GitHub Copilot (Sonnet 4.6)</span><i></i></a>
+<a class="tile" href="gallery.html#doom-opus" data-design="DOOM" data-model="Claude Opus 4.6" data-date="2026-03" aria-label="DOOM, by Claude Opus 4.6, Mar 2026"><img src="home/media/archive/doom-opus.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>DOOM, Claude Opus 4.6</span><i></i></a>
+<a class="tile" href="gallery.html#doom-opus-pretext" data-design="DOOM" data-model="Claude Opus 4.6 (Pretext)" data-date="2026-03" aria-label="DOOM, by Claude Opus 4.6 (Pretext), Mar 2026"><img src="home/media/archive/doom-opus-pretext.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>DOOM, Claude Opus 4.6 (Pretext)</span><i></i></a>
+<a class="tile" href="gallery.html#pac-man-opus" data-design="PAC-MAN" data-model="Claude Opus 4.5" data-date="2025-11" aria-label="PAC-MAN, by Claude Opus 4.5, Nov 2025"><img src="home/media/archive/pac-man-opus.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>PAC-MAN, Claude Opus 4.5</span><i></i></a>
+<a class="tile" href="gallery.html#pac-man-grok" data-design="PAC-MAN" data-model="Grok Code Fast 1" data-date="2025-11" aria-label="PAC-MAN, by Grok Code Fast 1, Nov 2025"><img src="home/media/archive/pac-man-grok.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>PAC-MAN, Grok Code Fast 1</span><i></i></a>
+<a class="tile" href="gallery.html#pac-man-gemini" data-design="PAC-MAN" data-model="Gemini 3 Pro" data-date="2025-11" aria-label="PAC-MAN, by Gemini 3 Pro, Nov 2025"><img src="home/media/archive/pac-man-gemini.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>PAC-MAN, Gemini 3 Pro</span><i></i></a>
+<a class="tile" href="gallery.html#pac-man-gpt" data-design="PAC-MAN" data-model="GPT-5.1-Codex" data-date="2025-11" aria-label="PAC-MAN, by GPT-5.1-Codex, Nov 2025"><img src="home/media/archive/pac-man-gpt.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>PAC-MAN, GPT-5.1-Codex</span><i></i></a>
+<a class="tile" href="gallery.html#snake-opus" data-design="Snake" data-model="Claude Opus 4.5" data-date="2025-11" aria-label="Snake, by Claude Opus 4.5, Nov 2025"><img src="home/media/archive/snake-opus.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Snake, Claude Opus 4.5</span><i></i></a>
+<a class="tile" href="gallery.html#snake-gemini" data-design="Snake" data-model="Gemini 3 Pro" data-date="2025-11" aria-label="Snake, by Gemini 3 Pro, Nov 2025"><img src="home/media/archive/snake-gemini.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Snake, Gemini 3 Pro</span><i></i></a>
+<a class="tile" href="gallery.html#game-of-life-opus" data-design="Game of Life" data-model="Claude Opus 4.5" data-date="2025-11" aria-label="Game of Life, by Claude Opus 4.5, Nov 2025"><img src="home/media/archive/game-of-life-opus.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>Game of Life, Claude Opus 4.5</span><i></i></a>
+<a class="tile" href="gallery.html#retro-70s-opus" data-design="70s Retro" data-model="Claude Opus 4.5" data-date="2025-12" aria-label="70s Retro, by Claude Opus 4.5, Dec 2025"><img src="home/media/archive/retro-70s-opus.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>70s Retro, Claude Opus 4.5</span><i></i></a>
+<a class="tile" href="gallery.html#retro-70s-gemini" data-design="70s Retro" data-model="Gemini 3 Pro" data-date="2025-12" aria-label="70s Retro, by Gemini 3 Pro, Dec 2025"><img src="home/media/archive/retro-70s-gemini.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>70s Retro, Gemini 3 Pro</span><i></i></a>
+<a class="tile" href="gallery.html#retro-70s-gpt" data-design="70s Retro" data-model="GPT-5.1-Codex-Max (Preview)" data-date="2025-12" aria-label="70s Retro, by GPT-5.1-Codex-Max (Preview), Dec 2025"><img src="home/media/archive/retro-70s-gpt.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>70s Retro, GPT-5.1-Codex-Max (Preview)</span><i></i></a>
+<a class="tile" href="gallery.html#retro-80s-opus" data-design="80s Retro" data-model="Claude Opus 4.5" data-date="2025-12" aria-label="80s Retro, by Claude Opus 4.5, Dec 2025"><img src="home/media/archive/retro-80s-opus.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>80s Retro, Claude Opus 4.5</span><i></i></a>
+<a class="tile" href="gallery.html#retro-80s-gemini" data-design="80s Retro" data-model="Gemini 3 Pro" data-date="2025-12" aria-label="80s Retro, by Gemini 3 Pro, Dec 2025"><img src="home/media/archive/retro-80s-gemini.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>80s Retro, Gemini 3 Pro</span><i></i></a>
+<a class="tile" href="gallery.html#retro-80s-gpt" data-design="80s Retro" data-model="GPT-5.1-Codex-Max (Preview)" data-date="2025-12" aria-label="80s Retro, by GPT-5.1-Codex-Max (Preview), Dec 2025"><img src="home/media/archive/retro-80s-gpt.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>80s Retro, GPT-5.1-Codex-Max (Preview)</span><i></i></a>
+<a class="tile" href="gallery.html#retro-90s-opus" data-design="90s Retro" data-model="Claude Opus 4.5" data-date="2025-12" aria-label="90s Retro, by Claude Opus 4.5, Dec 2025"><img src="home/media/archive/retro-90s-opus.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>90s Retro, Claude Opus 4.5</span><i></i></a>
+<a class="tile" href="gallery.html#retro-90s-gemini" data-design="90s Retro" data-model="Gemini 3 Pro" data-date="2025-12" aria-label="90s Retro, by Gemini 3 Pro, Dec 2025"><img src="home/media/archive/retro-90s-gemini.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>90s Retro, Gemini 3 Pro</span><i></i></a>
+<a class="tile" href="gallery.html#retro-90s-gpt" data-design="90s Retro" data-model="GPT-5.1-Codex-Max (Preview)" data-date="2025-12" aria-label="90s Retro, by GPT-5.1-Codex-Max (Preview), Dec 2025"><img src="home/media/archive/retro-90s-gpt.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>90s Retro, GPT-5.1-Codex-Max (Preview)</span><i></i></a>
+<a class="tile" href="coflow-privacy.html" data-design="CoFlow" data-model="About and privacy" data-date="2026-10" aria-label="CoFlow: about and privacy"><img src="home/media/archive/coflow-privacy.webp" alt="" width="640" height="400" loading="lazy" decoding="async"><span>CoFlow, About and privacy</span><i></i></a>
+</div>
+
+<div id="veil" aria-hidden="true"></div>
+<div id="turner" class="dial" aria-hidden="true"></div>
+<div id="turner2" class="dial" aria-hidden="true"></div>
+
+<p id="cap" aria-hidden="true"><b id="cap-a"></b><span id="cap-b"></span></p>
+
+</div>
+
+<div id="spacer" aria-hidden="true"></div>
+<div id="probe" aria-hidden="true"></div>
+
+<button type="button" id="back" hidden><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="10" cy="11" rx="7.5" ry="3.6"/><path d="M10 2.8v6.4M7.4 5.2 10 2.6l2.6 2.6"/></svg>All five</button>
+
+<script>
+(function () {
+  'use strict';
+  var SITE = true, OLD_IDS = ["minimal-opus", "minimal-gemini", "minimal-gpt", "minimal-grok", "minimal-raptor-mini", "signal-gemini", "signal-grok", "signal-gpt", "signal-opus", "signal-raptor-mini", "terminal-opus-legacy", "terminal-opus", "terminal-gemini", "terminal-gpt", "terminal-grok", "terminal-sonnet", "pretext-opus", "pretext-gpt", "pretext-copilot", "pretext-gemini", "pretext-gpt53-codex", "pretext-sonnet", "doom-opus", "doom-opus-pretext", "pac-man-opus", "pac-man-grok", "pac-man-gemini", "pac-man-gpt", "snake-opus", "snake-gemini", "game-of-life-opus", "retro-70s-opus", "retro-70s-gemini", "retro-70s-gpt", "retro-80s-opus", "retro-80s-gemini", "retro-80s-gpt", "retro-90s-opus", "retro-90s-gemini", "retro-90s-gpt"], START_TILE = 11;
+  var doc = document.documentElement;
+  var firstHash = decodeURIComponent((location.hash || '').slice(1));
+
+  // Links to the old gallery (zuabi.dev/#terminal-opus) keep working once this page is the front door.
+  if (SITE && firstHash && OLD_IDS.indexOf(firstHash) >= 0) { location.replace('gallery.html#' + firstHash); return; }
+
+  doc.classList.add('js');
+  function q(s) { return document.querySelector(s); }
+  function all(s) { return [].slice.call(document.querySelectorAll(s)); }
+  var stage = q('#stage'), veil = q('#veil'), sky = q('#sky'), scene = q('#scene'), scene2 = q('#scene2'), wafer = q('#wafer'), ingot = q('#ingot');
+  var spacer = q('#spacer'), probe = q('#probe'), mast = q('#mast'), back = q('#back'), fold = q('#fold'), foldLab = q('#fold-lab'), capA = q('#cap-a'), capB = q('#cap-b');
+  var cards = all('.card'), N = cards.length;
+  var parts = cards.map(function (c) {
+    return { card: c, clip: c.querySelector('.clip'), page: c.querySelector('.page'), fog: c.querySelector('.fog'), roll: c.querySelector('.roll'), curl: c.querySelector('.curl'), pool: c.querySelector('.pool'),
+             key: c.getAttribute('data-key'), tr: '', op: -1, fg: -1, hh: -1 };
+  });
+  var tiles = all('.tile'), T = tiles.length;
+  var tinfo = tiles.map(function (a) {
+    return { el: a, fog: a.querySelector('i'), design: a.getAttribute('data-design'), model: a.getAttribute('data-model'), date: a.getAttribute('data-date'), tr: '', fg: -1, vis: false };
+  });
+
+  var STEP = 2 * Math.PI / N, TILT = 22 * Math.PI / 180, SIN_T = Math.sin(TILT), COS_T = Math.cos(TILT);
+  var FACES = 8, FACE = 2 * Math.PI / FACES; // the archive column has eight faces
+  var BASE = N * 20;                        // where the wafer's scroller starts, far from either end
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var touchScroller = window.matchMedia('(pointer: coarse)').matches;   // touch screens scroll the dials natively
+
+  var W = 0, H = 0, P = 1800, s0 = 0.4, R = 500, h0 = 600, S = 800, foot0 = 0;      // the wafer
+  var tw = 400, th = 250, Rc = 800, pitch = 24, IW = 1500;                              // the archive column
+  var sel = 0, mode = 'ring', view = 'ring', flip = 0, flipAnim = null, shown = '';
+  var kIdx = BASE, aIdx = Math.min(Math.max(START_TILE, 0), Math.max(T - 1, 0)), frontTile = -1, raf = 0, announced = false;
+  var t0 = performance.now(), introDur = reduced ? 0 : 2100;
+  var px = 0, py = 0, tx = 0, ty = 0;
+  var lastAct = performance.now(), peeks = 0, peek = null, lastSy = 0, lastLeft = -1;
+  var focusPage = false, focusBack = false, deepNext = null;
+
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+  function mod(n, m) { return ((n % m) + m) % m; }
+  function ease(p) { return p * p * p * (p * (p * 6 - 15) + 10); }
+  function outCubic(t) { t = 1 - t; return 1 - t * t * t; }
+  function scrollY() { return window.pageYOffset || doc.scrollTop || 0; }
+  function setInert(el, on) { if ('inert' in el) el.inert = on; else if (on) el.setAttribute('aria-hidden', 'true'); else el.removeAttribute('aria-hidden'); }
+  function act() { lastAct = performance.now(); peek = null; }
+  // The stage itself never scrolls. Where a browser cannot clip without scrolling, a link to a page's #name would drag the scene out of place.
+  function pin() { if (stage.scrollTop || stage.scrollLeft) { stage.scrollTop = 0; stage.scrollLeft = 0; } }
+  stage.addEventListener('scroll', pin);
+
+  // The wafer's outline: a circle with one flat edge.
+  (function () {
+    var pts = [], a;
+    for (a = 248; a <= 582; a += 4.175) pts.push((50 + 50 * Math.cos(a * Math.PI / 180)).toFixed(2) + '% ' + (50 + 50 * Math.sin(a * Math.PI / 180)).toFixed(2) + '%');
+    wafer.style.clipPath = 'polygon(' + pts.join(',') + ')';
+  })();
+
+  // A dial: a sideways scroller with one stop per item. Wheel, trackpad, drag and touch all move it.
+  function makeDial(el, o) {
+    var d = { el: el, item: 400, drag: null, wheel: null, timer: 0, run: 0, dragged: false };
+    var f = document.createDocumentFragment(), i, s;
+    s = document.createElement('div'); s.className = 'pad'; f.appendChild(s);
+    for (i = 0; i < o.stops; i++) { s = document.createElement('div'); s.className = 'snap'; f.appendChild(s); }
+    s = document.createElement('div'); s.className = 'pad'; f.appendChild(s);
+    el.appendChild(f);
+    function lim(n) { return n < 0 ? 0 : n > o.stops - 1 ? o.stops - 1 : n; }
+    d.pos = function () { return el.scrollLeft / d.item; };
+    d.idx = function () { return Math.round(el.scrollLeft / d.item); };
+    d.jump = function (n) { el.scrollLeft = lim(n) * d.item; };
+    d.go = function (n) {                                   // glide to a stop, then let the scroller snap by itself again
+      var run = ++d.run; n = lim(n);
+      el.classList.add('is-settling'); el.classList.remove('is-dragging');
+      el.scrollTo({ left: n * d.item, behavior: reduced ? 'auto' : 'smooth' });
+      var fin = function () { el.removeEventListener('scrollend', fin); if (run !== d.run) return; el.classList.remove('is-settling'); };
+      el.addEventListener('scrollend', fin); setTimeout(fin, 900);
+    };
+    d.wheelEvent = function (ev) {                          // one notch of a mouse wheel is one stop; a trackpad moves with the fingers
+      if (ev.ctrlKey) return;
+      var dx = ev.deltaX, dy = ev.deltaY, delta;
+      if (ev.shiftKey && !dx) { dx = dy; dy = 0; }
+      if (o.bothAxes) delta = Math.abs(dx) > Math.abs(dy) ? dx : dy;
+      else { if (Math.abs(dx) <= Math.abs(dy)) return; delta = dx; }     // mostly vertical: the document scrolls
+      ev.preventDefault();
+      if (!o.enabled()) return;
+      act();
+      if (ev.deltaMode === 1) delta *= 32; else if (ev.deltaMode === 2) delta *= W;
+      if (!d.wheel) { d.wheel = { start: d.idx() }; d.run++; el.classList.add('is-dragging'); }
+      el.scrollLeft += delta;
+      clearTimeout(d.timer);
+      d.timer = setTimeout(function () {
+        var w = d.wheel; d.wheel = null;
+        if (!w) return;
+        var cur = d.pos(), moved = cur - w.start, t = Math.round(cur);
+        if (Math.abs(moved) < 0.07) t = w.start; else if (moved > 0) t = Math.max(w.start + 1, t); else t = Math.min(w.start - 1, t);
+        d.go(t);
+      }, 130);
+    };
+    el.addEventListener('pointerdown', function (ev) {      // mouse always; touch and pen only where the scroller is not native
+      if (ev.pointerType === 'mouse' ? ev.button !== 0 : touchScroller) return;
+      if (!o.enabled()) return;
+      act(); d.run++;
+      d.drag = { x: ev.clientX, left: el.scrollLeft, moved: false, id: ev.pointerId, lx: ev.clientX, lt: ev.timeStamp, v: 0 };
+    });
+    window.addEventListener('pointermove', function (ev) {
+      var g = d.drag;
+      if (!g || ev.pointerId !== g.id) return;
+      var dx = ev.clientX - g.x;
+      if (!g.moved && Math.abs(dx) > 5) { g.moved = true; el.classList.add('is-dragging'); try { el.setPointerCapture(g.id); } catch (err) {} }
+      if (g.moved) {
+        el.scrollLeft = g.left - dx * (o.dragGain || 1.2);
+        var dt = ev.timeStamp - g.lt;
+        if (dt > 0) { g.v = (ev.clientX - g.lx) / dt; g.lx = ev.clientX; g.lt = ev.timeStamp; }
+      }
+    });
+    function end() {
+      var g = d.drag;
+      if (!g) return;
+      d.drag = null;
+      if (!g.moved) return;
+      d.dragged = true; setTimeout(function () { d.dragged = false; }, 60);
+      d.go(Math.round((el.scrollLeft - g.v * 240) / d.item));
+    }
+    window.addEventListener('pointerup', end);
+    window.addEventListener('pointercancel', end);
+    el.addEventListener('click', function (ev) { if (d.dragged) { d.dragged = false; return; } act(); o.click(ev); });
+    return d;
+  }
+  function hit(ev, sel) {                                   // what lies under a click on a dial
+    var els = document.elementsFromPoint(ev.clientX, ev.clientY), j, c;
+    for (j = 0; j < els.length; j++) { c = els[j].closest ? els[j].closest(sel) : null; if (c) return c; }
+    return null;
+  }
+
+  function turnable() { return mode === 'ring' && view === 'ring' && !flipAnim && scrollY() < S * 0.05; }
+  var ring = makeDial(q('#turner'), { stops: BASE * 2 + 1, bothAxes: false, enabled: turnable, click: function (ev) {
+    var c = hit(ev, '.card');                               // the page in front opens, any other page comes to the front
+    if (!c || !turnable()) return;
+    var i = cards.indexOf(c);
+    if (i === sel) openPage(false); else goToPage(i);
+  } });
+  var arch = makeDial(q('#turner2'), { stops: Math.max(T, 1), bothAxes: true, dragGain: 0.9, enabled: function () { return view === 'archive' && !flipAnim; }, click: function (ev) {
+    var a = hit(ev, '.tile');                               // the page in front opens in the gallery, any other comes to the front
+    if (!a) return;
+    var i = tiles.indexOf(a);
+    if (i === frontTile) a.click(); else arch.go(i);
+  } });
+
+  // The wheel turns whichever view is showing, wherever on the stage the pointer is.
+  stage.addEventListener('wheel', function (ev) {
+    if (mode !== 'ring') return;                              // an open page scrolls as usual
+    (view === 'archive' || (flipAnim && flipAnim.to === 1) ? arch : ring).wheelEvent(ev);
+  }, { passive: false });
+
+  function pageHeight(i) { return parts[i].page.offsetHeight; }
+  function setSpacer() { spacer.style.height = (view === 'archive' || (flipAnim && flipAnim.to === 1) ? 0 : S + pageHeight(sel)) + 'px'; }
+
+  function measure() {
+    var oldS = S, st = doc.style, i;
+    W = doc.clientWidth; H = probe.offsetHeight || window.innerHeight;
+    var narrow = W < 720;
+    P = Math.max(1000, W * 1.3);
+
+    // The wafer: shrink until the five pages and the wafer fit between the name and the bottom edge.
+    var cw = narrow ? W * 0.5 : clamp(W * 0.44, 300, 900);
+    var hf = narrow ? 0.6 : 0.66, D, kb, kn, a, e2, f, nb, ch, tries;
+    var oy = H * 0.44, bandTop = (mast.offsetHeight || 48) + 4, bandBot = H - (narrow ? 58 : 40);
+    if (bandBot - bandTop < 160) bandBot = bandTop + 160;
+    for (tries = 0; tries < 8; tries++) {
+      s0 = cw / W; ch = H * hf * s0;
+      R = cw * (narrow ? 0.98 : 0.93);
+      kb = P / (P + 2 * R * COS_T);                         // how small things look at the back of the wafer
+      kn = P / (P - 0.25 * R * COS_T);                      // and how large at its near edge
+      a = 2 * R * SIN_T + ch; e2 = 0.25 * R * SIN_T;
+      f = (bandTop - oy * (1 - kb)) / kb + a;               // front foot that puts the back pages' tops on the band's top
+      nb = oy * (1 - kn) + (f + e2) * kn;                   // where the wafer's near edge then lands
+      foot0 = f;
+      if (nb <= bandBot) { foot0 = f + (bandBot - nb) / (kb + kn); break; }
+      cw *= Math.max(0.72, (bandBot - bandTop) / (nb - bandTop));
+    }
+    h0 = Math.round(H * hf);
+    S = Math.round(H * 0.9);
+    ring.item = Math.round(narrow ? W * 0.62 : clamp(W * 0.4, 420, 620));
+    D = Math.round(R * 2.5);
+
+    // The archive column: narrower than the screen, three rows of tiles in view.
+    tw = narrow ? W * 0.42 : clamp(W * 0.225, 200, 360);
+    if (tw * 0.625 > H * 0.25) tw = H * 0.25 / 0.625;
+    tw = Math.round(tw); th = Math.round(tw * 0.625);
+    Rc = (tw + (narrow ? 12 : 22)) / (2 * Math.sin(Math.PI / FACES));
+    pitch = (th + (narrow ? 18 : 30)) / FACES;              // one full turn climbs one row
+    IW = Math.round(Rc * 1.94);
+    arch.item = Math.round(narrow ? W * 0.3 : clamp(tw * 0.62, 150, 250));
+
+    st.setProperty('--H', H + 'px'); st.setProperty('--P', P + 'px'); st.setProperty('--S', S + 'px'); st.setProperty('--h0', h0 + 'px');
+    st.setProperty('--item', ring.item + 'px'); st.setProperty('--item2', arch.item + 'px');
+    st.setProperty('--D', D + 'px'); st.setProperty('--die', Math.round(D * 0.86 / 22) + 'px');
+    st.setProperty('--gw', Math.round(D * 1.25) + 'px'); st.setProperty('--gh', Math.round(D * 0.42) + 'px');
+    st.setProperty('--tw', tw + 'px'); st.setProperty('--th', th + 'px'); st.setProperty('--IW', IW + 'px');
+    for (i = 0; i < N; i++) { parts[i].tr = ''; parts[i].hh = -1; }
+    for (i = 0; i < T; i++) tinfo[i].tr = '';
+    if (mode === 'ring') { ring.jump(kIdx); arch.jump(aIdx); }
+    setSpacer();
+    if (mode === 'page' && oldS !== S) window.scrollBy(0, S - oldS);
+  }
+
+  function select(n, quiet) {
+    parts[sel].card.classList.remove('is-selected');
+    sel = n;
+    parts[sel].card.classList.add('is-selected');
+    setSpacer();
+    if (!quiet && announced) { try { history.replaceState(null, '', '#' + parts[sel].key); } catch (err) {} }
+  }
+
+  function setFront(i) {
+    if (frontTile >= 0) { tiles[frontTile].classList.remove('is-front'); tiles[frontTile].tabIndex = -1; }
+    frontTile = i;
+    if (i < 0) return;
+    var o = tinfo[i], m = /^(\d{4})-(\d{2})$/.exec(o.date || '');
+    tiles[i].classList.add('is-front'); tiles[i].tabIndex = 0;
+    capA.textContent = o.design;
+    capB.textContent = o.model + (m ? ', ' + ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m[2] - 1] + ' ' + m[1] : '');
+  }
+
+  // ---- drawing ----------------------------------------------------------------------------------------------------
+  function drawRing(now, sy, ringOn) {
+    var e = ease(clamp(sy / S, 0, 1)), m = 1 - e;
+    var kk = ring.pos() - BASE;
+    var it = introDur ? clamp((now - t0) / introDur, 0, 1) : 1;
+    var introK = -(1 - outCubic(it)) * 1.3;
+    var sway = reduced ? 0 : Math.sin(now / 2800) * 0.014 + px * 0.045;
+    var kv = kk + (introK + sway) * m;
+
+    if (e < 0.02 && ringOn) {
+      kIdx = ring.idx();
+      var ns = mod(kIdx, N);
+      if (ns !== sel) select(ns);
+      if (it >= 1) announced = true;
+    }
+    stage.classList.toggle('is-moving', e >= 0.02);
+
+    // A wordless hint, twice at most: the page in front starts to unroll, then settles back.
+    var pe = 0;
+    if (peek) { var pt = (now - peek) / 1150; if (pt >= 1) peek = null; else pe = Math.sin(Math.PI * pt) * 0.055; }
+    else if (!reduced && ringOn && it >= 1 && sy === 0 && peeks < 2 && now - lastAct > (peeks ? 9000 : 3200)) { peek = now; peeks++; lastAct = now; }
+
+    var drop = e * H * 0.2, i, o, d, t, sn, dp, x, z, top, yaw, s, op, fg, hh, tr, ee, mm, rt, sig;
+    for (i = 0; i < N; i++) {
+      o = parts[i];
+      d = i - kv - (i === sel ? 0 : e * 0.55); d -= Math.round(d / N) * N;
+      t = d * STEP; sn = Math.sin(t); dp = Math.cos(t) - 1;             // dp: 0 in front, -2 at the back
+      if (i === sel) {
+        ee = Math.max(e, pe); mm = 1 - ee;
+        s = s0 + (1 - s0) * ee; hh = h0 + (H - h0) * ee;
+        x = R * sn * m; z = R * COS_T * dp * m; top = (foot0 + R * SIN_T * dp - h0 * s0) * mm; yaw = sn * 24 * m;
+        op = 1; fg = -dp * 0.11 * m;
+      } else {
+        mm = 1; s = s0; hh = h0;
+        var Re = R * (1 + 1.4 * e);
+        x = Re * sn; z = Re * COS_T * dp - e * 600; top = foot0 + R * SIN_T * dp - h0 * s0 + drop; yaw = sn * 24;
+        op = clamp(1 - e * 2.6, 0, 1); fg = -dp * 0.11;
+      }
+      tr = 'translate3d(' + x.toFixed(2) + 'px,' + top.toFixed(2) + 'px,' + z.toFixed(2) + 'px) rotateY(' + yaw.toFixed(3) + 'deg) scale(' + s.toFixed(5) + ')';
+      if (o.tr !== tr) { o.tr = tr; o.card.style.transform = tr; }
+      if (o.op !== op) { o.op = op; o.card.style.opacity = op; o.card.style.visibility = op <= 0 ? 'hidden' : ''; }
+      fg = Math.round(fg * 1000) / 1000;
+      if (o.fg !== fg) { o.fg = fg; o.fog.style.opacity = fg; }
+      sig = hh.toFixed(1) + '|' + s.toFixed(4);
+      if (o.hh !== sig) {
+        o.hh = sig;
+        rt = (19 / s0) * Math.pow(mm, 1.25);
+        o.card.style.setProperty('--s', s.toFixed(4));
+        o.clip.style.height = hh.toFixed(1) + 'px';
+        o.clip.style.borderRadius = ((13 / s) * mm).toFixed(2) + 'px';
+        o.roll.style.top = (hh - rt * 0.45).toFixed(1) + 'px';
+        o.roll.style.height = rt.toFixed(2) + 'px';
+        o.roll.style.opacity = mm < 0.04 ? 0 : 1;
+        o.curl.style.opacity = mm;
+        o.pool.style.top = (hh + rt * 0.5).toFixed(1) + 'px';
+        o.pool.style.opacity = 0.55 * mm;
+      }
+    }
+
+    var wy = foot0 - R * SIN_T + drop, wz = -R * COS_T - e * 300;
+    wafer.style.transform = 'translate3d(0,' + wy.toFixed(2) + 'px,' + wz.toFixed(2) + 'px) rotateX(68deg) rotateZ(' + ((kv + e * 0.55) * 72).toFixed(3) + 'deg) scale(' + (1 + e * 1.5).toFixed(4) + ')';
+    wafer.style.opacity = clamp(1.25 - e * 1.6, 0, 1);
+    var oy = H * 0.44, sc = P / (P - wz);
+    sky.style.setProperty('--gy', (oy + (wy - oy) * sc).toFixed(1) + 'px');
+    return e;
+  }
+
+  function drawArchive(now) {
+    var k = arch.pos(), i, o, d, t, cs, y, x, z, near, fg, tr, vis, edge;
+    var idx = clamp(Math.round(k), 0, T - 1);
+    if (!flipAnim && view === 'archive') aIdx = idx;
+    if (idx !== frontTile) setFront(idx);
+    var kv = k + (reduced ? 0 : Math.sin(now / 3100) * 0.016 + px * 0.05);
+    var half = H * 0.5;
+    for (i = 0; i < T; i++) {
+      o = tinfo[i];
+      d = i - kv; t = d * FACE; cs = Math.cos(t); y = d * pitch;
+      vis = cs > 0.05 && Math.abs(y) < half + th * 0.6;
+      if (!vis) { if (o.vis) { o.vis = false; o.el.style.visibility = 'hidden'; o.tr = ''; } continue; }
+      near = Math.max(0, 1 - Math.abs(d));                               // 1 for the page in front
+      x = Rc * Math.sin(t); z = Rc * (cs - 1) + near * 26;
+      tr = 'translate3d(' + x.toFixed(2) + 'px,' + y.toFixed(2) + 'px,' + z.toFixed(2) + 'px) rotateY(' + (t * 180 / Math.PI).toFixed(3) + 'deg) scale(' + (1 + 0.07 * near).toFixed(4) + ')';
+      if (o.tr !== tr) { o.tr = tr; o.el.style.transform = tr; }
+      if (!o.vis) { o.vis = true; o.el.style.visibility = 'visible'; }
+      edge = Math.abs(y) / half;
+      fg = clamp((1 - cs) * 0.85 + (1 - near) * 0.18 + (edge > 0.7 ? (edge - 0.7) * 1.6 : 0), 0, 0.94);
+      fg = Math.round(fg * 200) / 200;
+      if (o.fg !== fg) { o.fg = fg; o.fog.style.opacity = fg; }
+    }
+    ingot.style.transform = 'translate3d(0,0,' + (-Rc).toFixed(1) + 'px)';
+    ingot.style.backgroundPosition = (-kv * Rc * FACE).toFixed(1) + 'px 0, 0 0';
+  }
+
+  function frame(now) {
+    raf = 0;
+    var sy = scrollY();
+    if (sy !== lastSy) { lastSy = sy; act(); }
+    if (view === 'ring' && !flipAnim && sy >= S) { enterPage(); return; }
+
+    if (flipAnim) {
+      var ft = clamp((now - flipAnim.t0) / flipAnim.dur, 0, 1);
+      flip = flipAnim.from + (flipAnim.to - flipAnim.from) * ease(ft);
+      if (ft >= 1) { flip = flipAnim.to; flipAnim = null; flipDone(); }
+    }
+    var want = flip < 0.5 ? 'ring' : 'archive';
+    if (want !== shown) { shown = want; scene.style.visibility = want === 'ring' ? '' : 'hidden'; scene2.style.display = want === 'archive' ? 'block' : ''; }
+
+    px += (tx - px) * 0.06; py += (ty - py) * 0.06;
+    var e = 0, left = ring.el.scrollLeft + arch.el.scrollLeft;
+    if (left !== lastLeft) { lastLeft = left; act(); }
+    if (want === 'ring') e = drawRing(now, sy, flip === 0); else drawArchive(now);
+
+    var dip = 1 - 0.14 * Math.sin(Math.PI * flip);
+    scene.style.transform = flip > 0 && flip < 0.5 ? 'rotateX(' + (flip * 180).toFixed(2) + 'deg) scale(' + dip.toFixed(4) + ')' : '';
+    scene2.style.transform = flip >= 0.5 && flip < 1 ? 'rotateX(' + (-(1 - flip) * 180).toFixed(2) + 'deg) scale(' + dip.toFixed(4) + ')' : '';
+    var bo = clamp((flip - 0.5) * 2, 0, 1);
+    stage.style.setProperty('--bo', bo.toFixed(3));
+    stage.style.setProperty('--go', (clamp(1 - flip * 2, 0, 1) * clamp(1.25 - e * 1.6, 0, 1)).toFixed(3));
+    mast.style.opacity = clamp(1 - e * 3.4, 0, 1);
+    stage.style.perspectiveOrigin = (50 + px * 2.2 * (1 - e)).toFixed(2) + '% ' + (44 + py * 1.6 * (1 - e)).toFixed(2) + '%';
+
+    raf = requestAnimationFrame(frame);
+  }
+
+  // ---- the two views and the open page ------------------------------------------------------------------------------
+  function setView(to, instant) {
+    if (mode !== 'ring') return;
+    if ((flipAnim ? (flipAnim.to === 1 ? 'archive' : 'ring') : view) === to) return;
+    if (scrollY() > 0) window.scrollTo(0, 0);
+    act();
+    flipAnim = { t0: performance.now(), dur: reduced || instant ? 1 : 950, from: flip, to: to === 'archive' ? 1 : 0 };
+    stage.classList.add('is-flipping');
+    if (to === 'archive') arch.jump(aIdx);
+    setSpacer();
+  }
+  function flipDone() {
+    view = flip >= 1 ? 'archive' : 'ring';
+    stage.classList.remove('is-flipping');
+    stage.classList.toggle('is-archive', view === 'archive');
+    setInert(scene2, view !== 'archive');
+    foldLab.textContent = view === 'archive' ? 'Back' : 'Archive';
+    fold.setAttribute('aria-label', view === 'archive' ? 'Back to the five pages' : 'Open the archive');
+    setSpacer();
+    try { history.replaceState(null, '', view === 'archive' ? '#archive' : '#' + parts[sel].key); } catch (err) {}
+  }
+
+  function enterPage() {
+    if (mode === 'page') return;
+    mode = 'page';
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    var o = parts[sel];
+    document.body.classList.add('is-page');
+    o.card.classList.add('is-open');
+    o.card.style.transform = 'none'; o.card.style.opacity = ''; o.card.style.visibility = '';
+    o.clip.style.height = ''; o.clip.style.borderRadius = '';
+    o.tr = ''; o.op = -1; o.hh = -1;
+    setInert(o.page, false);
+    back.hidden = false;
+    if (focusPage) { focusPage = false; o.page.setAttribute('tabindex', '-1'); try { o.page.focus({ preventScroll: true }); } catch (err) {} }
+    var tgt = deepNext; deepNext = null;                      // a link to a place inside this page: go there once the page is open
+    if (tgt && o.card.contains(tgt)) requestAnimationFrame(function () { if (mode === 'page') tgt.scrollIntoView(); });
+  }
+  function exitPage() {
+    if (mode === 'ring') return;
+    mode = 'ring';
+    var o = parts[sel];
+    document.body.classList.remove('is-page');
+    o.card.classList.remove('is-open');
+    setInert(o.page, true);
+    back.hidden = true;
+    ring.jump(kIdx); arch.jump(aIdx);
+    if (focusBack) { focusBack = false; try { fold.focus({ preventScroll: true }); } catch (err) {} }
+    frame(performance.now());
+  }
+
+  function goToPage(i) { var c = ring.idx(), d = mod(i - mod(c, N), N); if (d > N / 2) d -= N; ring.go(c + d); }
+  function openPage(byKeyboard) { focusPage = !!byKeyboard; window.scrollTo({ top: S, behavior: reduced ? 'auto' : 'smooth' }); }
+  function leavePage(byKeyboard) { focusBack = !!byKeyboard; window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }); }
+  function showPage(i, target) {                              // from a link: bring that page to the front and open it
+    if (mode === 'page' && sel === i) { if (target) target.scrollIntoView(); return; }
+    deepNext = target || null;
+    if (mode === 'page') window.scrollTo(0, 0);
+    if (view === 'archive' || flipAnim) setView('ring', true);
+    setTimeout(function () { goToPage(i); setTimeout(function () { openPage(true); }, reduced ? 30 : 650); }, 60);
+  }
+
+  all('#skip a').forEach(function (a) {
+    a.addEventListener('click', function (ev) {
+      var h = (a.getAttribute('href') || '').slice(1), i;
+      ev.preventDefault();
+      if (h === 'archive') { setView('archive'); return; }
+      for (i = 0; i < N; i++) if (parts[i].key === h) showPage(i);
+    });
+  });
+  fold.addEventListener('click', function () { setView((flipAnim ? flipAnim.to === 1 : view === 'archive') ? 'ring' : 'archive'); });
+  back.addEventListener('click', function (ev) { leavePage(ev.detail === 0); });
+  tiles.forEach(function (a, i) { a.addEventListener('focus', function () { if (view === 'archive' && !flipAnim && arch.idx() !== i) arch.go(i); }); });
+
+  window.addEventListener('pointermove', function (ev) {
+    if (ev.pointerType === 'mouse' && W && H) { tx = (ev.clientX / W - 0.5) * 2; ty = (ev.clientY / H - 0.5) * 2; }
+  });
+  document.addEventListener('mouseleave', function () { tx = 0; ty = 0; });
+
+  window.addEventListener('keydown', function (ev) {
+    if (ev.altKey || ev.ctrlKey || ev.metaKey) return;
+    act();
+    var k = ev.key, step = 0;
+    if (mode === 'page') { if (k === 'Escape') leavePage(true); return; }
+    if (view === 'archive' && !flipAnim) {
+      if (k === 'Escape') { setView('ring'); return; }
+      if (k === 'ArrowRight' || k === 'ArrowDown') step = 1; else if (k === 'ArrowLeft' || k === 'ArrowUp') step = -1;
+      else if (k === 'Home') step = -T; else if (k === 'End') step = T;
+      if (step) {
+        var n = clamp(arch.idx() + step, 0, T - 1);
+        arch.go(n); ev.preventDefault();
+        if (document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('tile')) { try { tiles[n].focus({ preventScroll: true }); } catch (err) {} }
+      }
+      return;
+    }
+    if (!turnable()) return;
+    if (k === 'ArrowRight') { ring.go(ring.idx() + 1); ev.preventDefault(); }
+    else if (k === 'ArrowLeft') { ring.go(ring.idx() - 1); ev.preventDefault(); }
+  });
+
+  window.addEventListener('scroll', function () {
+    if (mode === 'page' && scrollY() < S - 1) exitPage();
+  }, { passive: true });
+
+  window.addEventListener('hashchange', function () {
+    var h = decodeURIComponent((location.hash || '').slice(1)), i;
+    pin();
+    if (!h) return;
+    if (SITE && OLD_IDS.indexOf(h) >= 0) { location.replace('gallery.html#' + h); return; }
+    if (h === 'archive') { if (mode === 'page') window.scrollTo(0, 0); setTimeout(function () { setView('archive'); }, mode === 'page' ? 80 : 0); return; }
+    for (i = 0; i < N; i++) if (parts[i].key === h) { showPage(i); return; }
+    var el = document.getElementById(h), host = el && el.closest ? el.closest('.card') : null;
+    if (host) showPage(cards.indexOf(host), el);
+  });
+
+  var resizeTimer = 0;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      if (doc.clientWidth !== W || (probe.offsetHeight || window.innerHeight) !== H) measure();
+    }, 60);
+  });
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(function () { if (mode === 'ring') setSpacer(); });
+    parts.forEach(function (o) { ro.observe(o.page); });
+  }
+  window.addEventListener('load', function () {
+    if (mode === 'ring') setSpacer();
+    setTimeout(function () { tiles.forEach(function (a) { var im = a.querySelector('img'); if (im) im.loading = 'eager'; }); }, 1500);   // fetch the archive pictures once the wafer is up
+  });
+
+  // ---- start: a #name in the address picks a page, the archive, or a place inside a page ------------------------------
+  parts.forEach(function (o) { setInert(o.page, true); });
+  setInert(scene2, true);
+  tiles.forEach(function (a) { a.tabIndex = -1; });
+  var start = 0, deep = null, wantArchive = firstHash === 'archive', isKey = false, i;
+  for (i = 0; i < N; i++) if (parts[i].key === firstHash) { start = i; isKey = true; }
+  if (firstHash && !isKey && !wantArchive) {
+    var el = document.getElementById(firstHash), host = el && el.closest ? el.closest('.card') : null;
+    if (host) { start = cards.indexOf(host); deep = el; }
+  }
+  kIdx = BASE + start;
+  measure();
+  select(start, true);
+  ring.jump(kIdx); arch.jump(aIdx);
+  setFront(aIdx);
+  if (deep) {
+    introDur = 0;
+    window.scrollTo(0, S); enterPage(); deep.scrollIntoView();
+  } else if (wantArchive) {
+    introDur = 0; window.scrollTo(0, 0);
+    flip = 1; view = 'archive'; flipDone();
+    raf = requestAnimationFrame(frame);
+  } else if (scrollY() >= S) {
+    introDur = 0; enterPage();
+  } else {
+    if (scrollY() > 4) introDur = 0;
+    raf = requestAnimationFrame(frame);
+  }
+  pin(); window.addEventListener('load', pin);
+  requestAnimationFrame(function () { veil.classList.add('is-out'); });
+})();
+</script>
 </body>
 </html>

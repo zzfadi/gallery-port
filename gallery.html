@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zuabi.dev</title>
+  <meta name="description" content="A gallery of landing pages, each built by a different AI model.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts loaded via CSS @import for Sora + JetBrains Mono -->
+  <link rel="stylesheet" href="gallery.css?v=4">
+</head>
+<body>
+  <!-- Full-viewport iframe for page content -->
+  <iframe id="page-frame" title="Landing page content" allow="pointer-lock"></iframe>
+
+  <!-- Floating trigger button -->
+  <button class="gallery-trigger" id="gallery-trigger" aria-haspopup="dialog" aria-expanded="false">
+    <span class="trigger-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
+      </svg>
+    </span>
+    <span class="trigger-current">
+      <span class="trigger-design" id="trigger-design">Loading</span>
+      <span class="trigger-sep">·</span>
+      <span class="trigger-model" id="trigger-model">
+        <span class="trigger-model-icon" id="trigger-model-icon"></span>
+        <span class="trigger-model-name" id="trigger-model-name">...</span>
+      </span>
+    </span>
+    <span class="trigger-kbd">G</span>
+  </button>
+
+  <!-- Modal backdrop -->
+  <div class="gallery-backdrop" id="gallery-backdrop"></div>
+
+  <!-- Command Palette / Bottom Sheet -->
+  <div class="gallery-palette" id="gallery-palette" role="dialog" aria-modal="true" aria-labelledby="palette-title">
+    <!-- Header -->
+    <div class="palette-header">
+      <div class="palette-title">
+        <h2 id="palette-title"><a href="./" style="color:inherit;text-underline-offset:3px">Zuabi.dev</a> Gallery</h2>
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+          <button class="palette-close" id="palette-close" aria-label="Close gallery">&times;</button>
+        </div>
+      </div>
+      <p class="palette-subtitle">Same content, different AI designs</p>
+    </div>
+
+    <!-- Design Selector (Visual Tiles) -->
+    <div class="palette-categories-wrapper">
+      <div class="palette-categories" id="palette-categories" role="tablist" aria-label="Design categories"></div>
+    </div>
+
+    <!-- Design Tiles (3-column grid) -->
+    <div class="palette-designs-wrapper">
+      <div class="palette-designs" id="palette-designs" role="tablist" aria-label="Design styles"></div>
+    </div>
+
+    <!-- Model List -->
+    <div class="palette-models" id="palette-models" role="listbox" aria-label="AI model implementations"></div>
+
+    <!-- Footer -->
+    <div class="palette-footer">
+      <div class="palette-shortcuts">
+        <span class="shortcut"><kbd>↑</kbd><kbd>↓</kbd> models</span>
+        <span class="shortcut"><kbd>←</kbd><kbd>→</kbd> designs</span>
+        <span class="shortcut"><kbd>esc</kbd> close</span>
+      </div>
+      <button class="palette-prompt-btn" id="palette-prompt-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+        View prompt
+      </button>
+    </div>
+  </div>
+
+  <!-- Prompt Modal -->
+  <div class="prompt-modal-overlay" id="prompt-modal-overlay">
+    <div class="prompt-modal">
+      <div class="prompt-modal-header">
+        <span class="prompt-modal-title" id="prompt-modal-title">Design Prompt</span>
+        <button class="prompt-modal-close" id="prompt-modal-close">&times;</button>
+      </div>
+      <div class="prompt-modal-content" id="prompt-modal-content">
+        <div class="prompt-loading">Loading prompt...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <!-- Keyboard hint toast -->
+  <div class="keyboard-hint" id="keyboard-hint">
+    Press <kbd>G</kbd> to browse gallery
+  </div>
+
+  <script src="gallery.js?v=7"></script>
+</body>
+</html>
