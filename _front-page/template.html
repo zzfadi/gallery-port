@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>/*@TITLE@*/</title>
-<meta name="description" content="Fadi Zuabi. Five ways to read one record, and an archive of forty pages built by different AI models.">
+<meta name="description" content="Fadi Zuabi. Five ways to read one record, and an archive of the pages different AI models built from one profile.">
 <meta name="color-scheme" content="dark light">
 <link rel="icon" href="/*@ICON@*/">
 <style>
@@ -86,7 +86,7 @@ html.js #wafer .sheen{inset:0;
 @keyframes sheen{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){html.js #wafer .sheen{animation:none}}
 
-/* the archive: forty pages wound around a column */
+/* the archive: the gallery's pages wound around a column */
 html.js #ingot{display:block;position:absolute;left:50%;top:-30%;height:160%;width:var(--IW,1500px);margin-left:calc(var(--IW,1500px)/-2);will-change:transform;
   background:
     repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 2px,rgba(255,255,255,0) 2px 7.2%),
@@ -116,11 +116,13 @@ html.js #stage.is-archive #turner2{visibility:visible;pointer-events:auto}
 html.js #stage.is-moving .dial,html.js #stage.is-flipping .dial{overflow:hidden;pointer-events:none}
 
 /* the fold in the corner that flips between the two views */
-html.js #fold{display:flex;position:absolute;right:0;bottom:0;z-index:5;align-items:flex-end;gap:10px;padding:0;border:0;background:none;color:var(--ink);font:600 14px/1 'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}
+html.js #fold{display:flex;position:absolute;right:0;bottom:0;z-index:5;align-items:flex-end;gap:18px;padding:0;border:0;background:none;color:var(--ink);font:600 14px/1 'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent}
 #fold .lab{padding-bottom:16px;color:var(--dim)}
-#fold:hover .lab,#fold:focus-visible .lab{color:var(--ink)}
+#fold:focus-visible .lab{color:var(--ink)}
 #fold .ear{position:relative;width:74px;height:74px;transform-origin:100% 100%;transition:transform .28s ease}
-#fold:hover .ear,#fold:focus-visible .ear{transform:scale(1.16)}
+#fold:focus-visible .ear{transform:scale(1.16)}
+@media (hover:hover){#fold:hover .lab{color:var(--ink)}#fold:hover .ear{transform:scale(1.16)}}   /* not on touch, where a tap would leave it enlarged */
+html.js #fold:focus-visible{outline-offset:-5px}
 #fold .ear::before{content:"";position:absolute;inset:0;clip-path:polygon(100% 0,100% 100%,0 100%);background:linear-gradient(135deg,#5c6a82,#2b3445)}
 #fold .ear::after{content:"";position:absolute;inset:0;clip-path:polygon(100% 0,0 100%,0 0);background:linear-gradient(135deg,#f3efe5 0%,#d8d2c4 58%,#8f897c 100%)}
 html.js #stage.is-archive #fold .ear::before{background:linear-gradient(135deg,#f7ac08,#6b4a05)}
@@ -165,7 +167,7 @@ html.js #spacer{display:block}
 <button type="button" id="fold" aria-label="Open the archive"><span class="lab" id="fold-lab">Archive</span><span class="ear" aria-hidden="true"></span></button>
 
 <span id="archive"></span>
-<div id="scene2" aria-label="Archive: forty pages built by different AI models, and the CoFlow notice">
+<div id="scene2" aria-label="Archive: pages built by different AI models, and the CoFlow notice">
 <div id="ingot" aria-hidden="true"></div>
 <!--@TILES@-->
 </div>
