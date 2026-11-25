@@ -129,9 +129,24 @@ html.js #stage.is-archive #fold .ear::before{background:linear-gradient(135deg,#
 html.js #stage.is-moving #fold{opacity:0;pointer-events:none}
 @media (prefers-reduced-motion:reduce){#fold .ear{transition:none}}
 
-#back{position:fixed;right:16px;bottom:16px;z-index:10;display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px 0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(10,12,20,.9);color:#F5F3EE;font:600 15px/1 'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35)}
-#back:hover{background:#0A0C14;border-color:#F5F3EE}
-#back[hidden]{display:none}
+.pill{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px 0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(10,12,20,.9);color:#F5F3EE;font:600 15px/1 'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;text-decoration:none;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.pill:hover{background:#0A0C14;border-color:#F5F3EE}
+.pill.quiet{padding:0 16px;font-weight:500}
+.pill[hidden]{display:none}
+#back{position:fixed;right:16px;bottom:16px;z-index:10}
+
+/* ---- a page from the archive, opened in place: its thumbnail grows to fill the window and the live page fades in over it ---- */
+#viewer{position:fixed;inset:0;z-index:20;overflow:hidden;background:#0B0D14;transform-origin:0 0;will-change:transform}
+#viewer[hidden]{display:none}
+#viewer-shot{position:absolute;left:0;top:0;width:100%;aspect-ratio:16/10;background:center/cover no-repeat}
+#viewer.is-waiting #viewer-shot{animation:shot-wait 1.5s ease-in-out infinite}
+@keyframes shot-wait{50%{opacity:.55}}
+#viewer-hold{position:absolute;inset:0}
+#viewer-hold iframe{display:block;width:100%;height:100%;border:0;background:#fff;opacity:0;transition:opacity .3s ease}
+#viewer.is-live #viewer-hold iframe{opacity:1}
+#viewer-bar{position:absolute;right:16px;bottom:16px;display:flex;gap:8px;transition:opacity .2s ease}
+#viewer.is-moving #viewer-bar{opacity:0;pointer-events:none}
+@media (prefers-reduced-motion:reduce){#viewer-hold iframe,#viewer-bar{transition:none}#viewer.is-waiting #viewer-shot{animation:none}}
 
 /* ---- one page open: it is an ordinary page again ---- */
 html.js body.is-page{overflow-x:clip}
@@ -183,7 +198,13 @@ html.js #spacer{display:block}
 <div id="spacer" aria-hidden="true"></div>
 <div id="probe" aria-hidden="true"></div>
 
-<button type="button" id="back" hidden><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="10" cy="11" rx="7.5" ry="3.6"/><path d="M10 2.8v6.4M7.4 5.2 10 2.6l2.6 2.6"/></svg>All five</button>
+<button type="button" id="back" class="pill" hidden><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="10" cy="11" rx="7.5" ry="3.6"/><path d="M10 2.8v6.4M7.4 5.2 10 2.6l2.6 2.6"/></svg>All five</button>
+
+<div id="viewer" hidden>
+<div id="viewer-shot"></div>
+<div id="viewer-hold"></div>
+<div id="viewer-bar"><a id="viewer-more" class="pill quiet" href="gallery.html">Compare models</a><button type="button" id="viewer-back" class="pill"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7.5" width="14" height="9" rx="1.6"/><path d="M6 4h8"/></svg>Archive</button></div>
+</div>
 
 <script>
 (function () {
@@ -191,6 +212,13 @@ html.js #spacer{display:block}
   var SITE = /*@SITE@*/false, OLD_IDS = /*@OLD_IDS@*/[], START_TILE = /*@START_TILE@*/0;
   var doc = document.documentElement;
   var firstHash = decodeURIComponent((location.hash || '').slice(1));
+
+  // A page in the archive may link home. Followed inside the frame that shows it, that link would put this page inside itself: take the whole window instead.
+  if (SITE && window.top !== window.self) {
+    try { if (window.top.location.origin === location.origin) { window.top.location.replace(location.href); return; } } catch (err) {}
+  }
+  var bootView = null;                                        // a reload while a page from the archive was open: open it again
+  try { bootView = SITE && history.state && history.state.v || null; } catch (err) {}
 
   // Links to the old gallery (zuabi.dev/#terminal-opus) keep working once this page is the front door.
   if (SITE && firstHash && OLD_IDS.indexOf(firstHash) >= 0) { location.replace('gallery.html#' + firstHash); return; }
@@ -207,8 +235,10 @@ html.js #spacer{display:block}
   });
   var tiles = all('.tile'), T = tiles.length;
   var tinfo = tiles.map(function (a) {
-    return { el: a, fog: a.querySelector('i'), design: a.getAttribute('data-design'), model: a.getAttribute('data-model'), date: a.getAttribute('data-date'), tr: '', fg: -1, vis: false };
+    return { el: a, fog: a.querySelector('i'), design: a.getAttribute('data-design'), model: a.getAttribute('data-model'), date: a.getAttribute('data-date'), src: a.getAttribute('data-src'), tr: '', fg: -1, vis: false };
   });
+  var viewer = q('#viewer'), vshot = q('#viewer-shot'), vhold = q('#viewer-hold'), vbackBtn = q('#viewer-back'), vmore = q('#viewer-more');
+  var vOpen = -1, vframe = null, vAnim = null, vEntry = false, vUnwind = 0, vWait = 0, vPending = null, byPointer = false;   // the page from the archive that is open in place, if any
 
   var STEP = 2 * Math.PI / N, TILT = 22 * Math.PI / 180, SIN_T = Math.sin(TILT), COS_T = Math.cos(TILT);
   var FACES = 8, FACE = 2 * Math.PI / FACES; // the archive column has eight faces
@@ -326,16 +356,16 @@ html.js #spacer{display:block}
     var i = cards.indexOf(c);
     if (i === sel) openPage(false); else goToPage(i);
   } });
-  var arch = makeDial(q('#turner2'), { stops: Math.max(T, 1), bothAxes: true, dragGain: 0.9, enabled: function () { return view === 'archive' && !flipAnim; }, click: function (ev) {
-    var a = hit(ev, '.tile');                               // the page in front opens in the gallery, any other comes to the front
+  var arch = makeDial(q('#turner2'), { stops: Math.max(T, 1), bothAxes: true, dragGain: 0.9, enabled: function () { return view === 'archive' && !flipAnim && vOpen < 0; }, click: function (ev) {
+    var a = hit(ev, '.tile');                               // the page in front opens, any other comes to the front
     if (!a) return;
     var i = tiles.indexOf(a);
-    if (i === frontTile) a.click(); else arch.go(i);
+    if (i === frontTile) { byPointer = true; a.click(); byPointer = false; } else arch.go(i);
   } });
 
   // The wheel turns whichever view is showing, wherever on the stage the pointer is.
   stage.addEventListener('wheel', function (ev) {
-    if (mode !== 'ring') return;                              // an open page scrolls as usual
+    if (mode !== 'ring' || vOpen >= 0) return;                // an open page scrolls as usual
     (view === 'archive' || (flipAnim && flipAnim.to === 1) ? arch : ring).wheelEvent(ev);
   }, { passive: false });
 
@@ -504,6 +534,7 @@ html.js #spacer{display:block}
 
   function frame(now) {
     raf = 0;
+    if (vOpen >= 0 && !vAnim) return;                         // a page covers the archive: nothing to draw until it closes
     var sy = scrollY();
     if (sy !== lastSy) { lastSy = sy; act(); }
     if (view === 'ring' && !flipAnim && sy >= S) { enterPage(); return; }
@@ -553,7 +584,90 @@ html.js #spacer{display:block}
     fold.setAttribute('aria-label', view === 'archive' ? 'Back to the five pages' : 'Open the archive');
     setSpacer();
     try { history.replaceState(null, '', view === 'archive' ? '#archive' : '#' + parts[sel].key); } catch (err) {}
+    if (view === 'archive' && vPending) { var pv = vPending; vPending = null; openViewer(tileBySrc(pv), true); }
   }
+
+  // ---- a page from the archive, opened in place ----------------------------------------------------------------------
+  // The thumbnail grows from its tile to the whole window while the real page loads in a frame above it, then the page fades in.
+  // Archive, Escape or the browser's Back shrink it onto the tile again. None of the pages themselves is changed.
+  function tileBySrc(src) { for (var i = 0; i < T; i++) if (tinfo[i].src === src) return i; return -1; }
+  function viewerPose(e, b) {                                 // e runs from 0, on the tile, to 1, the whole window
+    if (e >= 1) { viewer.style.transform = ''; viewer.style.clipPath = ''; return; }
+    var vw = viewer.offsetWidth, vh = viewer.offsetHeight, a = b.width / vw, sc = a + (1 - a) * e, m = 1 - e;
+    viewer.style.transform = 'translate(' + (b.left * m).toFixed(2) + 'px,' + (b.top * m).toFixed(2) + 'px) scale(' + sc.toFixed(5) + ')';
+    viewer.style.clipPath = 'inset(0 0 ' + (Math.max(0, vh - b.height / a) * m).toFixed(1) + 'px 0 round ' + (8 * m / sc).toFixed(1) + 'px)';   // the tile is wider than most windows are: hide what hangs below it
+  }
+  function viewerRun(to, done) {
+    var from = vAnim ? vAnim.e : 1 - to, b = tiles[vOpen].getBoundingClientRect(), t1 = performance.now(), dur = reduced ? 1 : 520, run = { e: from, to: to };
+    vAnim = run;
+    viewer.classList.add('is-moving');
+    (function step(now) {
+      if (vAnim !== run) return;
+      var p = clamp((now - t1) / dur, 0, 1);
+      run.e = from + (to - from) * ease(p);
+      viewerPose(run.e, b);
+      if (p < 1) { requestAnimationFrame(step); return; }
+      vAnim = null; viewer.classList.remove('is-moving'); done();
+    })(t1);
+  }
+  function openViewer(i, instant, byKey) {
+    var o = tinfo[i];
+    if (!SITE || !o || !o.src || vOpen >= 0 || mode !== 'ring' || view !== 'archive' || flipAnim) return;
+    var href = o.el.getAttribute('href') || '', im = o.el.querySelector('img');
+    vOpen = i; act();
+    vshot.style.backgroundImage = 'url("' + (im.currentSrc || im.src) + '")';
+    vframe = document.createElement('iframe');
+    vframe.title = o.el.getAttribute('aria-label') || o.design;
+    vframe.setAttribute('allowfullscreen', '');
+    vframe.addEventListener('load', function () { if (this !== vframe) return; clearTimeout(vWait); viewer.classList.remove('is-waiting'); viewer.classList.add('is-live'); });
+    vframe.src = o.src;
+    vhold.appendChild(vframe);
+    vmore.hidden = href.indexOf('gallery.html#') !== 0;       // the gallery has the other models and the prompt for this design
+    if (!vmore.hidden) vmore.href = href;
+    viewer.classList.remove('is-live', 'is-waiting');
+    viewer.hidden = false;
+    clearTimeout(vWait); vWait = setTimeout(function () { if (vOpen === i && !viewer.classList.contains('is-live')) viewer.classList.add('is-waiting'); }, 900);
+    setInert(stage, true);
+    try { if (instant) history.replaceState({ v: o.src }, '', location.href); else history.pushState({ v: o.src }, '', location.href); vEntry = true; } catch (err) { vEntry = false; }
+    if (instant) { vAnim = null; viewerPose(1); return; }
+    viewerRun(1, function () { if (byKey) { try { vbackBtn.focus({ preventScroll: true }); } catch (err) {} } });   // opened from the keyboard: the way back is one key away. After a click, leave the focus alone, so that typing meant for the page cannot press the button
+  }
+  function closeViewer(fromHistory) {
+    if (vOpen < 0 || (vAnim && vAnim.to === 0)) return;
+    var i = vOpen, inside = viewer.contains(document.activeElement);
+    if (!fromHistory) unwind(0);
+    clearTimeout(vWait);
+    viewer.classList.remove('is-waiting', 'is-live');         // the live page fades back to its thumbnail on the way down
+    setInert(stage, false);
+    drawArchive(performance.now());                           // the window may have changed size while the page was open
+    viewerRun(0, function () {
+      viewer.hidden = true; viewerPose(1);
+      if (vframe && vframe.parentNode) vframe.parentNode.removeChild(vframe);
+      vframe = null; vshot.style.backgroundImage = '';
+      vOpen = -1;
+      if (inside) { try { tiles[i].focus({ preventScroll: true }); } catch (err) {} }
+      if (!raf && mode === 'ring') raf = requestAnimationFrame(frame);
+    });
+  }
+  // Opening added one entry to the history, so that Back closes the page. Closing by button takes that entry off again.
+  // Links followed inside the page add entries of their own; step back until ours is gone.
+  function unwind(n) {
+    clearTimeout(vUnwind);
+    var on = false; try { on = !!(history.state && history.state.v); } catch (err) {}
+    if (!vEntry || !on) { vEntry = false; return; }
+    if (n >= 8) { vEntry = false; try { history.replaceState(null, '', location.href); } catch (err) {} return; }
+    try { history.back(); } catch (err) { vEntry = false; return; }
+    vUnwind = setTimeout(function () { unwind(n + 1); }, 450);
+  }
+  window.addEventListener('popstate', function (ev) {
+    var v = ev.state && ev.state.v;
+    if (!v) { vEntry = false; clearTimeout(vUnwind); closeViewer(true); return; }
+    if (!SITE || vOpen >= 0 || tileBySrc(v) < 0) return;
+    vEntry = true;                                            // forward again, onto a page that was open
+    if (view === 'archive' && !flipAnim && mode === 'ring') { arch.jump(tileBySrc(v)); drawArchive(performance.now()); openViewer(tileBySrc(v), true); }
+    else { vPending = v; if (mode === 'ring') setView('archive', true); }
+  });
+  vbackBtn.addEventListener('click', function () { closeViewer(false); });
 
   function enterPage() {
     if (mode === 'page') return;
@@ -603,9 +717,16 @@ html.js #spacer{display:block}
       for (i = 0; i < N; i++) if (parts[i].key === h) showPage(i);
     });
   });
-  fold.addEventListener('click', function () { setView((flipAnim ? flipAnim.to === 1 : view === 'archive') ? 'ring' : 'archive'); });
+  fold.addEventListener('click', function () { if (vOpen >= 0) return; setView((flipAnim ? flipAnim.to === 1 : view === 'archive') ? 'ring' : 'archive'); });
   back.addEventListener('click', function (ev) { leavePage(ev.detail === 0); });
-  tiles.forEach(function (a, i) { a.addEventListener('focus', function () { if (view === 'archive' && !flipAnim && arch.idx() !== i) arch.go(i); }); });
+  tiles.forEach(function (a, i) {
+    a.addEventListener('focus', function () { if (view === 'archive' && !flipAnim && arch.idx() !== i) arch.go(i); });
+    a.addEventListener('click', function (ev) {               // on the site the page opens in place; the link itself still leads to the gallery
+      if (!SITE || !tinfo[i].src || view !== 'archive' || flipAnim || mode !== 'ring') return;
+      ev.preventDefault();
+      if (i === frontTile) openViewer(i, false, !byPointer); else arch.go(i);
+    });
+  });
 
   window.addEventListener('pointermove', function (ev) {
     if (ev.pointerType === 'mouse' && W && H) { tx = (ev.clientX / W - 0.5) * 2; ty = (ev.clientY / H - 0.5) * 2; }
@@ -616,6 +737,7 @@ html.js #spacer{display:block}
     if (ev.altKey || ev.ctrlKey || ev.metaKey) return;
     act();
     var k = ev.key, step = 0;
+    if (vOpen >= 0) { if (k === 'Escape') closeViewer(false); return; }
     if (mode === 'page') { if (k === 'Escape') leavePage(true); return; }
     if (view === 'archive' && !flipAnim) {
       if (k === 'Escape') { setView('ring'); return; }
@@ -685,7 +807,8 @@ html.js #spacer{display:block}
   } else if (wantArchive) {
     introDur = 0; window.scrollTo(0, 0);
     flip = 1; view = 'archive'; flipDone();
-    raf = requestAnimationFrame(frame);
+    frame(performance.now());
+    if (bootView && tileBySrc(bootView) >= 0) { arch.jump(tileBySrc(bootView)); drawArchive(performance.now()); openViewer(tileBySrc(bootView), true); }
   } else if (scrollY() >= S) {
     introDur = 0; enterPage();
   } else {

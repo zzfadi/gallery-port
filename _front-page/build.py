@@ -71,7 +71,7 @@ def page_parts(key, prefix):
 
 def gallery_pages():
     cfg = json.loads((SITE / 'config.json').read_text(encoding='utf-8'))
-    return [{'id': m['id'], 'design': d['label'], 'model': m['model'], 'date': m.get('date', '')}
+    return [{'id': m['id'], 'design': d['label'], 'model': m['model'], 'date': m.get('date', ''), 'path': m['path']}
             for cat in cfg['categories'] for d in cat['designs'] for m in d['models']]
 
 def build(out, site):
@@ -100,8 +100,9 @@ def build(out, site):
         else:
             href = ('gallery.html#' if site else 'https://zuabi.dev/#') + it['id']
             label = f"{it['design']}, by {it['model']}" + (f", {when(it['date'])}" if when(it['date']) else '')
+        src = f' data-src="{a(it.get("href") or it["path"])}"' if site else ''   # on the site a tile opens its page in place
         tiles.append(
-            f'<a class="tile" href="{href}" data-design="{a(it["design"])}" data-model="{a(it["model"])}" data-date="{a(it["date"])}" aria-label="{a(label)}">'
+            f'<a class="tile" href="{href}"{src} data-design="{a(it["design"])}" data-model="{a(it["model"])}" data-date="{a(it["date"])}" aria-label="{a(label)}">'
             f'<img src="{prefix}media/archive/{it["id"]}.webp" alt="" width="640" height="400" loading="lazy" decoding="async">'
             f'<span>{a(it["design"])}, {a(it["model"])}</span><i></i></a>')
     faces = '\n'.join(
