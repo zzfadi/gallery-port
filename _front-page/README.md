@@ -1,6 +1,6 @@
 # Front page
 
-The front page of zuabi.dev: five portfolio pages standing on a turning wafer. Sideways turns the wafer. Scrolling down unrolls the page in front into the full page. The fold in the bottom corner flips to the archive, where every gallery page, and the CoFlow notice, is a tile on a column and opens where it lives.
+The front page of zuabi.dev: five portfolio pages standing on a turning wafer. Sideways turns the wafer. Scrolling down unrolls the page in front into the full page. The fold in the bottom corner flips to the archive, where every gallery page, and the CoFlow notice, is a tile on a column. The tile in front opens its page in place: the thumbnail grows to fill the window and the page loads in a frame over it. Archive, Escape or the browser's Back shrink it onto the column again, and Compare models leads to the gallery for that page. None of the pages is changed for this.
 
 This folder is the source. Its name starts with an underscore so that GitHub Pages does not serve it.
 
